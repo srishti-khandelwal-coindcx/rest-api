@@ -216,8 +216,58 @@ Parameter | Description
 ID | The ID of the kitten to delete -->
 
 # Order
+Enum definitions for the purpose of order are as follows:
+
+Name      |   Values
+----------|------------
+side      |   buy, sell
+order_type|   market_order, limit_order
+
+
 
 ## New order
+
+```ruby
+
+```
+
+```python
+
+```
+
+```shell
+
+```
+
+```javascript
+
+```
+
+> Response:
+
+```json
+{  
+   "orders":[  
+     {  
+        "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+        "market":"TRXETH",
+        "order_type":"limit_order",
+        "side":"buy",
+        "status":"open",
+        "fee_amount":0.0000008,
+        "fee":0.1,
+        "total_quantity":2,
+        "remaining_quantity":2.0,
+        "avg_price":0.0,
+        "price_per_unit":0.00001567,
+        "created_at":"2018-04-19T18:17:28.022Z",
+        "updated_at":"2018-04-19T18:17:28.022Z"
+     }
+   ]
+}
+```
+
+
 Use this endpoint to place a new order on the exchange
 
 ### HTTP Request
@@ -226,8 +276,64 @@ Use this endpoint to place a new order on the exchange
 
 ### Parameters
 
-Parameter Name | Required | Value | Description
---------- | ------- 
+Name           |Required| Example    | Description
+---------------|---- |---------------|-------
+market         | Yes | ETHBTC        | The trading pair
+total_quantity | Yes | 1.101         | Quantity to trade 
+price_per_unit | No  | 0.082         | Price per unit (not required for market order)
+side           | Yes | buy           | Specify buy or sell
+order_type     | Yes | market_order  | Order Type
+
+
+##  Order status
+```ruby
+
+```
+
+```python
+
+```
+
+```shell
+
+```
+
+```javascript
+
+```
+
+> Response:
+
+```json 
+{  
+  "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+  "market":"TRXETH",
+  "order_type":"limit_order",
+  "side":"buy",
+  "status":"open",
+  "fee_amount":0.0000008,
+  "fee":0.1,
+  "total_quantity":2,
+  "remaining_quantity":2.0,
+  "avg_price":0.0,
+  "price_per_unit":0.00001567,
+  "created_at":"2018-04-19T18:17:28.022Z",
+  "updated_at":"2018-04-19T18:17:28.022Z"
+}
+```
+
+
+Use this endpoint to fetch status of any order
+
+### HTTP Request
+
+`POST /exchange/orders/status`
+
+### Parameters
+
+Name           |Required| Example    | Description
+---------------|---- |---------------|-------
+id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
 
 
 
