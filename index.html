@@ -241,6 +241,9 @@
                   <li>
                     <a href="#new-order" class="toc-h2 toc-link" data-title="new-order">New order</a>
                   </li>
+                  <li>
+                    <a href="#order-status" class="toc-h2 toc-link" data-title="order-status">Order status</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -435,13 +438,138 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete -->
-<h1 id='order'>Order</h1><h2 id='new-order'>New order</h2>
+<h1 id='order'>Order</h1>
+<p>Enum definitions for the purpose of order are as follows:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>side</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>market_order, limit_order</td>
+</tr>
+</tbody></table>
+<h2 id='new-order'>New order</h2><pre class="highlight ruby tab-ruby"><code>
+</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight shell tab-shell"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+   </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">  
+     </span><span class="p">{</span><span class="w">  
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"market"</span><span class="p">:</span><span class="s2">"TRXETH"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_type"</span><span class="p">:</span><span class="s2">"limit_order"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fee_amount"</span><span class="p">:</span><span class="mf">0.0000008</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fee"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_quantity"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remaining_quantity"</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avg_price"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price_per_unit"</span><span class="p">:</span><span class="mf">0.00001567</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2018-04-19T18:17:28.022Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2018-04-19T18:17:28.022Z"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Use this endpoint to place a new order on the exchange</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /exchange/orders/create</code></p>
 <h3 id='parameters'>Parameters</h3>
-<p>Parameter Name | Required | Value | Description
---------- | ------- </p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>Yes</td>
+<td>ETHBTC</td>
+<td>The trading pair</td>
+</tr>
+<tr>
+<td>total_quantity</td>
+<td>Yes</td>
+<td>1.101</td>
+<td>Quantity to trade</td>
+</tr>
+<tr>
+<td>price_per_unit</td>
+<td>No</td>
+<td>0.082</td>
+<td>Price per unit (not required for market order)</td>
+</tr>
+<tr>
+<td>side</td>
+<td>Yes</td>
+<td>buy</td>
+<td>Specify buy or sell</td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>Yes</td>
+<td>market_order</td>
+<td>Order Type</td>
+</tr>
+</tbody></table>
+<h2 id='order-status'>Order status</h2><pre class="highlight ruby tab-ruby"><code>
+</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight shell tab-shell"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"market"</span><span class="p">:</span><span class="s2">"TRXETH"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_type"</span><span class="p">:</span><span class="s2">"limit_order"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fee_amount"</span><span class="p">:</span><span class="mf">0.0000008</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fee"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_quantity"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"remaining_quantity"</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avg_price"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price_per_unit"</span><span class="p">:</span><span class="mf">0.00001567</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2018-04-19T18:17:28.022Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2018-04-19T18:17:28.022Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Use this endpoint to fetch status of any order</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /exchange/orders/status</code></p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Yes</td>
+<td>ead19992-43fd-11e8-b027-bb815bcb14ed</td>
+<td>The ID of the order</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 </aside>
