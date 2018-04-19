@@ -19,121 +19,99 @@ search: true
 
 # Introduction
 
-Welcome to the CoinDCX API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the CoinDCX API!
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+<aside class="warning">All the API calls use POST method. Parameters are to be passed as JSON in the request body</aside>
 
 # Authentication
 
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
 ```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+
 ```
 
 ```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace API key and API secret with your own.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+The authentication procedure is as follows:
+<ul>
+  <li>The payload is the parameters object, JSON encoded</li>
+`payload = parameters-object -> JSON encode`
+  <br><br>
+  <li>The signature is the hex digest of an HMAC-SHA256 hash where the message is your payload, and the secret key is your API secret.</li>
+`signature = HMAC-SHA256(payload, api-secret).digest('hex')`
+</ul>
+<br>
+ <p>After this, You will have to add following headers into all the authenticated requests</p>
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Header Name | Value
+--------- | ------- 
+X-AUTH-APIKEY| your-api-key
+X-AUTH-SIGNATURE| signature
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>your-api-key</code> and <code>signature</code> with your personal API key and generated signature respectively.
 </aside>
 
-# Kittens
+# User
 
-## Get All Kittens
+## Get balances
 
 ```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
 ```
 
 ```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+
 ```
 
 ```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
 ```
 
-> The above command returns JSON structured like this:
+> Response:
 
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "currency": "BTC",
+    "balance": 1.167,
+    "locked_balance": 2.1
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+> Locked balance is the balance currently being used by an open order
+
+This endpoint retrieves account's balances.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST /exchange/users/balances`
 
-### Query Parameters
+<!-- ### Query Parameters -->
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
+<!-- <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
-</aside>
+</aside> -->
 
-## Get a Specific Kitten
+<!-- ## Get a Specific Kitten
 
 ```ruby
 require 'kittn'
@@ -235,5 +213,21 @@ This endpoint deletes a specific kitten.
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | The ID of the kitten to delete -->
+
+# Order
+
+## New order
+Use this endpoint to place a new order on the exchange
+
+### HTTP Request
+
+`POST /exchange/orders/create`
+
+### Parameters
+
+Parameter Name | Required | Value | Description
+--------- | ------- 
+
+
 
