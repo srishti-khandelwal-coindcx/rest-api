@@ -213,7 +213,41 @@ market         | Yes |  SNTBTC
 ```
 
 ```javascript
+const crypto = require('crypto')
+const request = require('request')
+key = "Your api key"
+secret = "Your secret key"
+body = {
+  "side" : "buy",
+  "order_type" : "limit_order",
+  "price_per_unit": 0.00001724,
+  "market" : "SNTBTC",
+  "total_quantity" : 100
+}
 
+const payload = new Buffer(JSON.stringify(body)).toString();
+
+const signature = crypto
+  .createHmac('sha256', secret)
+  .update(payload)
+  .digest('hex')
+
+const options = {
+  url: "https://api.coindcx.com/exchange/v1/orders/create",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(
+  options,
+  function(error, response, body) {
+    console.log('body:', body)
+  }
+)
 ```
 
 > Make sure to replace API key and API secret with your own.
