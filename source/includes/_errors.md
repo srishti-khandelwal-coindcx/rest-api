@@ -1,8 +1,5 @@
 # Errors
 
-<aside class="notice">
-</aside>
-
 The CoinDCX API uses the following error codes:
 
 

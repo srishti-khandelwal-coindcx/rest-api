@@ -20,10 +20,159 @@ search: true
 # Introduction
 
 Welcome to the CoinDCX API!
+<aside class="notice">The base URL for all the API calls is `https://api.coindcx.com` </aside>
 
-<aside class="warning">All the API calls use POST method. Parameters are to be passed as JSON in the request body</aside>
+# API call limits
+We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
+In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second.
+
+
+# Public endpoints
+
+## Ticker
+### HTTP Request
+`GET /exchange/ticker`
+
+> Response
+
+```json
+[
+  {
+    "market": "REQBTC",
+    "change_24_hour": "-1.621",
+    "high": "0.00002799",
+    "low": "0.00002626",
+    "last_price": "0.00002663",
+    "bid": "0.00002663",
+    "ask": "0.00002669",
+    "timestamp": 1524211224
+  }
+]
+```
+
+### Definitions
+
+<ul>
+  <li>bid - Highest bid offer in the orderbook</li>
+  <li>ask - Highest ask offer in the orderbook</li>
+  <li>high - 24 hour high</li>
+  <li>low - 24 hour low</li>
+  <li>timestamp - Time when this ticker was generated</li>
+</ul>
+
+<aside>A ticker is generated once every second</aside>
+
+
+## Markets
+### HTTP Request
+`GET /exchange/v1/markets`
+
+> Respose:
+
+```json
+[
+  "SNTBTC",
+  "TRXBTC",
+  "TRXETH"
+  .
+  .
+]
+```
+
+Returns an array of strings of currently active markets.
+
+
+## Markets details
+### HTTP Request
+
+`GET /exchange/v1/markets_details`
+
+> Response:
+
+```json
+[
+  {
+    "coindcx_name":               "SNTBTC",
+    "base_currency_short_name":   "BTC",
+    "target_currency_short_name": "SNT",
+    "target_currency_name":       "Status",
+    "base_currency_name":         "Bitcoin",
+    "min_quantity":               1,
+    "max_quantity":               1000000,
+    "min_notional":               0.001,
+    "base_currency_precision":    8,
+    "target_currency_precision":  0,
+    "step":                       1,
+    "order_types":                ["market_order", "limit_order"]
+  }
+]
+```
+       
+
+### Definitions
+
+<ul>
+  <li>min_quantity - It is the minimum quantity of target currency (SNT) for which an order may be placed</li>
+  <li>max_quantity - It is the maximum quantity of target currency (SNT) for which an order may be placed</li>
+  <li>min_notional - It is the minimum amount of base currency (BTC) for which an order may be placed</li>
+  <li>base_currency_precision - Number of decimals accepted for the base currency</li>
+  <li>target_currency_precision - Number of decimals accepted for the target currency</li>
+  <li>step - It is the minimum increament accepted for the target currency</li>
+</ul>
+
+
+## Trades
+### HTTP request
+`GET /exchange/v1/trades/:market`
+
+> Response
+
+```json
+[
+  {
+    "p":  0.00001693,
+    "q":  394,
+    "T":  1521476030955.09,
+    "m":  false
+  }
+}
+```
+
+### Path parameters
+Name           |Required| Example     
+---------------|---- |---------------
+market         | Yes |  SNTBTC 
+
+This API provides with a sorted list of most recent 30 trades.
+### Definitions
+<ul>
+  <li>m stands for whether the trade is market maker or not.</li>
+  <li>p is the trade price</li>
+  <li>q is the quantity</li>
+  <li>T is the timestamp of trade</li>
+</ul>
+
+
+## Order book
+### HTTP request
+`GET /exchange/v1/book/:market`
+
+### Path parameters
+Name           |Required| Example     
+---------------|---- |---------------
+market         | Yes |  SNTBTC 
+
+
+<aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
+
+
+
+### 
+
 
 # Authentication
+
+<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body</aside>
 
 > To authorize, use this code:
 
@@ -336,4 +485,179 @@ Name           |Required| Example    | Description
 id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
 
 
+##  Active orders
+```ruby
 
+```
+
+```python
+
+```
+
+```shell
+
+```
+
+```javascript
+
+```
+
+> Response:
+
+```json 
+[
+  {  
+    "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+    "market":"TRXETH",
+    "order_type":"limit_order",
+    "side":"buy",
+    "status":"open",
+    "fee_amount":0.0000008,
+    "fee":0.1,
+    "total_quantity":2,
+    "remaining_quantity":2.0,
+    "avg_price":0.0,
+    "price_per_unit":0.00001567,
+    "created_at":"2018-04-19T18:17:28.022Z",
+    "updated_at":"2018-04-19T18:17:28.022Z"
+  }
+]
+```
+
+
+Use this endpoint to fetch active orders
+
+### HTTP Request
+
+`POST /exchange/orders/active_orders`
+
+### Parameters
+
+Name           |Required| Example    | Description
+---------------|---- |---------------|-------
+market         | Yes  |    SNTBTC     |
+side           | No  |    buy        |
+
+
+##  Active orders count
+```ruby
+
+```
+
+```python
+
+```
+
+```shell
+
+```
+
+```javascript
+
+```
+
+> Response:
+
+```json 
+ 3
+```
+
+
+Use this endpoint to fetch active orders count
+
+### HTTP Request
+
+`POST /exchange/orders/active_orders_count`
+
+### Parameters
+
+Name           |Required| Example    | Description
+---------------|---- |---------------|-------
+market         | Yes  |    SNTBTC     |
+side           | No  |    buy        |
+
+
+
+##  Cancel all
+```ruby
+
+```
+
+```python
+
+```
+
+```shell
+
+```
+
+```javascript
+
+```
+
+> Response:
+
+```json 
+
+```
+
+
+Use this endpoint to cancel multiple active orders in a single API call
+
+### HTTP Request
+
+`POST /exchange/orders/cancel_all`
+
+### Parameters
+
+Name           |Required| Example    | Description
+---------------|---- |---------------|-------
+market         | Yes  |    SNTBTC     |
+side           | No  |    buy        |
+
+Sending side param is optional. You may cancel all the sell orders of SNTBTC by sending
+<br>
+<code>{market: "SNTBTC", side  : "sell"}</code>
+
+
+Or you may cancel all your orders in SNTBTC market by sending
+<br>
+<code>{market: "SNTBTC"}</code>
+
+
+
+##  Cancel
+```ruby
+
+```
+
+```python
+
+```
+
+```shell
+
+```
+
+```javascript
+
+```
+
+> Response:
+
+```json 
+
+```
+
+
+Use this endpoint to cancel an active orders
+
+### HTTP Request
+
+`POST /exchange/orders/cancel`
+
+### Parameters
+
+Name           |Required| Example    | Description
+---------------|---- |---------------|-------
+id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
