@@ -411,7 +411,7 @@ In aggregate, you may call <code>https//api.coindcx.com</code> not more than 10 
   <li>T is the timestamp of trade</li>
 </ul>
 <h2 id='order-book'>Order book</h2><h3 id='http-request-5'>HTTP request</h3>
-<p><code>GET /exchange/v1/book/:market</code></p>
+<p><code>GET /exchange/v1/books/:market</code></p>
 <h3 id='path-parameters-2'>Path parameters</h3>
 <table><thead>
 <tr>
@@ -426,7 +426,28 @@ In aggregate, you may call <code>https//api.coindcx.com</code> not more than 10 
 <td>SNTBTC</td>
 </tr>
 </tbody></table>
-
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"asks"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"0.00160900"</span><span class="p">:</span><span class="s2">"23.79000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"0.00161000"</span><span class="p">:</span><span class="s2">"300.85"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"0.00161400"</span><span class="p">:</span><span class="s2">"11.25"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"0.00161500"</span><span class="p">:</span><span class="s2">"101.82"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"0.00161700"</span><span class="p">:</span><span class="s2">"222.37000000"</span><span class="w">
+    </span><span class="p">,</span><span class="w">
+    </span><span class="p">,</span><span class="w">
+    </span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"bids"</span><span class="p">:{</span><span class="w">  
+    </span><span class="s2">"0.00160400"</span><span class="p">:</span><span class="s2">"24.24000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"0.00160300"</span><span class="p">:</span><span class="s2">"7.63"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"0.00160100"</span><span class="p">:</span><span class="s2">"917.51000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"0.00159900"</span><span class="p">:</span><span class="s2">"40.8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"0.00159700"</span><span class="p">:</span><span class="s2">"6"</span><span class="w">
+    </span><span class="p">,</span><span class="w">
+    </span><span class="p">,</span><span class="w">
+    </span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
 <h1 id='authentication'>Authentication</h1>
 <aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body</aside>
