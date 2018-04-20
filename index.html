@@ -225,9 +225,6 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
           </li>
           <li>
-            <a href="#api-call-limits" class="toc-h1 toc-link" data-title="api-call-limits">API call limits</a>
-          </li>
-          <li>
             <a href="#public-endpoints" class="toc-h1 toc-link" data-title="public-endpoints">Public endpoints</a>
               <ul class="toc-list-h2">
                   <li>
@@ -282,6 +279,9 @@
               </ul>
           </li>
           <li>
+            <a href="#api-call-limits" class="toc-h1 toc-link" data-title="api-call-limits">API call limits</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
           </li>
       </div>
@@ -296,9 +296,6 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the CoinDCX API!
 <aside class="notice">The base URL for all the API calls is <code>https://api.coindcx.com</code> </aside></p>
-<h1 id='api-call-limits'>API call limits</h1>
-<p>We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
-In aggregate, you may call <code>https//api.coindcx.com</code> not more than 10 times per second.</p>
 <h1 id='public-endpoints'>Public endpoints</h1><h2 id='ticker'>Ticker</h2><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /exchange/ticker</code></p>
 
@@ -951,6 +948,9 @@ ID | The ID of the kitten to delete -->
 <td>The ID of the order</td>
 </tr>
 </tbody></table>
+<h1 id='api-call-limits'>API call limits</h1>
+<p>We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
+In aggregate, you may call <code>https//api.coindcx.com</code> not more than 10 times per second.</p>
 <h1 id='errors'>Errors</h1>
 <p>The CoinDCX API uses the following error codes:</p>
 
