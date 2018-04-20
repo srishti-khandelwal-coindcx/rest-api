@@ -225,6 +225,29 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
           </li>
           <li>
+            <a href="#api-call-limits" class="toc-h1 toc-link" data-title="api-call-limits">API call limits</a>
+          </li>
+          <li>
+            <a href="#public-endpoints" class="toc-h1 toc-link" data-title="public-endpoints">Public endpoints</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#ticker" class="toc-h2 toc-link" data-title="ticker">Ticker</a>
+                  </li>
+                  <li>
+                    <a href="#markets" class="toc-h2 toc-link" data-title="markets">Markets</a>
+                  </li>
+                  <li>
+                    <a href="#markets-details" class="toc-h2 toc-link" data-title="markets-details">Markets details</a>
+                  </li>
+                  <li>
+                    <a href="#trades" class="toc-h2 toc-link" data-title="trades">Trades</a>
+                  </li>
+                  <li>
+                    <a href="#order-book" class="toc-h2 toc-link" data-title="order-book">Order book</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="authentication">Authentication</a>
           </li>
           <li>
@@ -244,6 +267,18 @@
                   <li>
                     <a href="#order-status" class="toc-h2 toc-link" data-title="order-status">Order status</a>
                   </li>
+                  <li>
+                    <a href="#active-orders" class="toc-h2 toc-link" data-title="active-orders">Active orders</a>
+                  </li>
+                  <li>
+                    <a href="#active-orders-count" class="toc-h2 toc-link" data-title="active-orders-count">Active orders count</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-all" class="toc-h2 toc-link" data-title="cancel-all">Cancel all</a>
+                  </li>
+                  <li>
+                    <a href="#cancel" class="toc-h2 toc-link" data-title="cancel">Cancel</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -259,10 +294,143 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the CoinDCX API!</p>
+<p>Welcome to the CoinDCX API!
+<aside class="notice">The base URL for all the API calls is <code>https://api.coindcx.com</code> </aside></p>
+<h1 id='api-call-limits'>API call limits</h1>
+<p>We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
+In aggregate, you may call <code>https//api.coindcx.com</code> not more than 10 times per second.</p>
+<h1 id='public-endpoints'>Public endpoints</h1><h2 id='ticker'>Ticker</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /exchange/ticker</code></p>
 
-<aside class="warning">All the API calls use POST method. Parameters are to be passed as JSON in the request body</aside>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REQBTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"change_24_hour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1.621"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00002799"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00002626"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00002663"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00002663"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00002669"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524211224</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='definitions'>Definitions</h3>
+<ul>
+  <li>bid - Highest bid offer in the orderbook</li>
+  <li>ask - Highest ask offer in the orderbook</li>
+  <li>high - 24 hour high</li>
+  <li>low - 24 hour low</li>
+  <li>timestamp - Time when this ticker was generated</li>
+</ul>
+
+<aside>A ticker is generated once every second</aside>
+<h2 id='markets'>Markets</h2><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /exchange/v1/markets</code></p>
+
+<blockquote>
+<p>Respose:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"SNTBTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"TRXBTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"TRXETH"</span><span class="w">
+  </span><span class="err">.</span><span class="w">
+  </span><span class="err">.</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Returns an array of strings of currently active markets.</p>
+<h2 id='markets-details'>Markets details</h2><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /exchange/v1/markets_details</code></p>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"coindcx_name"</span><span class="p">:</span><span class="w">               </span><span class="s2">"SNTBTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"base_currency_short_name"</span><span class="p">:</span><span class="w">   </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target_currency_short_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SNT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target_currency_name"</span><span class="p">:</span><span class="w">       </span><span class="s2">"Status"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"base_currency_name"</span><span class="p">:</span><span class="w">         </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"min_quantity"</span><span class="p">:</span><span class="w">               </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_quantity"</span><span class="p">:</span><span class="w">               </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"min_notional"</span><span class="p">:</span><span class="w">               </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"base_currency_precision"</span><span class="p">:</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target_currency_precision"</span><span class="p">:</span><span class="w">  </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"step"</span><span class="p">:</span><span class="w">                       </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_types"</span><span class="p">:</span><span class="w">                </span><span class="p">[</span><span class="s2">"market_order"</span><span class="p">,</span><span class="w"> </span><span class="s2">"limit_order"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='definitions-2'>Definitions</h3>
+<ul>
+  <li>min_quantity - It is the minimum quantity of target currency (SNT) for which an order may be placed</li>
+  <li>max_quantity - It is the maximum quantity of target currency (SNT) for which an order may be placed</li>
+  <li>min_notional - It is the minimum amount of base currency (BTC) for which an order may be placed</li>
+  <li>base_currency_precision - Number of decimals accepted for the base currency</li>
+  <li>target_currency_precision - Number of decimals accepted for the target currency</li>
+  <li>step - It is the minimum increament accepted for the target currency</li>
+</ul>
+<h2 id='trades'>Trades</h2><h3 id='http-request-4'>HTTP request</h3>
+<p><code>GET /exchange/v1/trades/:market</code></p>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"p"</span><span class="p">:</span><span class="w">  </span><span class="mf">0.00001693</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w">  </span><span class="mi">394</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"T"</span><span class="p">:</span><span class="w">  </span><span class="mf">1521476030955.09</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w">  </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='path-parameters'>Path parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>Yes</td>
+<td>SNTBTC</td>
+</tr>
+</tbody></table>
+
+<p>This API provides with a sorted list of most recent 30 trades.</p>
+<h3 id='definitions-3'>Definitions</h3>
+<ul>
+  <li>m stands for whether the trade is market maker or not.</li>
+  <li>p is the trade price</li>
+  <li>q is the quantity</li>
+  <li>T is the timestamp of trade</li>
+</ul>
+<h2 id='order-book'>Order book</h2><h3 id='http-request-5'>HTTP request</h3>
+<p><code>GET /exchange/v1/book/:market</code></p>
+<h3 id='path-parameters-2'>Path parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>Yes</td>
+<td>SNTBTC</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
 <h1 id='authentication'>Authentication</h1>
+<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body</aside>
+
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
@@ -326,7 +494,7 @@ You must replace <code>your-api-key</code> and <code>signature</code> with your 
 </blockquote>
 
 <p>This endpoint retrieves account&#39;s balances.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST /exchange/users/balances</code></p>
 
 <!-- ### Query Parameters -->
@@ -485,7 +653,7 @@ ID | The ID of the kitten to delete -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to place a new order on the exchange</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /exchange/orders/create</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
@@ -552,7 +720,7 @@ ID | The ID of the kitten to delete -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to fetch status of any order</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /exchange/orders/status</code></p>
 <h3 id='parameters-2'>Parameters</h3>
 <table><thead>
@@ -570,10 +738,165 @@ ID | The ID of the kitten to delete -->
 <td>The ID of the order</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-</aside>
+<h2 id='active-orders'>Active orders</h2><pre class="highlight ruby tab-ruby"><code>
+</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight shell tab-shell"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">  
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"market"</span><span class="p">:</span><span class="s2">"TRXETH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_type"</span><span class="p">:</span><span class="s2">"limit_order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee_amount"</span><span class="p">:</span><span class="mf">0.0000008</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_quantity"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"remaining_quantity"</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avg_price"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price_per_unit"</span><span class="p">:</span><span class="mf">0.00001567</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2018-04-19T18:17:28.022Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="s2">"2018-04-19T18:17:28.022Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Use this endpoint to fetch active orders</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST /exchange/orders/active_orders</code></p>
+<h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>Yes</td>
+<td>SNTBTC</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>No</td>
+<td>buy</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='active-orders-count'>Active orders count</h2><pre class="highlight ruby tab-ruby"><code>
+</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight shell tab-shell"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="mi">3</span><span class="w">
+</span></code></pre>
+<p>Use this endpoint to fetch active orders count</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST /exchange/orders/active_orders_count</code></p>
+<h3 id='parameters-4'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>Yes</td>
+<td>SNTBTC</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>No</td>
+<td>buy</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='cancel-all'>Cancel all</h2><pre class="highlight ruby tab-ruby"><code>
+</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight shell tab-shell"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre>
+<p>Use this endpoint to cancel multiple active orders in a single API call</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>POST /exchange/orders/cancel_all</code></p>
+<h3 id='parameters-5'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>Yes</td>
+<td>SNTBTC</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>No</td>
+<td>buy</td>
+<td></td>
+</tr>
+</tbody></table>
 
+<p>Sending side param is optional. You may cancel all the sell orders of SNTBTC by sending
+<br>
+<code>{market: &quot;SNTBTC&quot;, side  : &quot;sell&quot;}</code></p>
+
+<p>Or you may cancel all your orders in SNTBTC market by sending
+<br>
+<code>{market: &quot;SNTBTC&quot;}</code></p>
+<h2 id='cancel'>Cancel</h2><pre class="highlight ruby tab-ruby"><code>
+</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight shell tab-shell"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre>
+<p>Use this endpoint to cancel an active orders</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>POST /exchange/orders/cancel</code></p>
+<h3 id='parameters-6'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Yes</td>
+<td>ead19992-43fd-11e8-b027-bb815bcb14ed</td>
+<td>The ID of the order</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
 <p>The CoinDCX API uses the following error codes:</p>
 
 <table><thead>
