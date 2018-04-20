@@ -276,7 +276,7 @@ This endpoint retrieves account's balances.
 
 ### HTTP Request
 
-`POST /exchange/users/balances`
+`POST /exchange/v1/users/balances`
 
 <!-- ### Query Parameters -->
 
@@ -445,7 +445,7 @@ Use this endpoint to place a new order on the exchange
 
 ### HTTP Request
 
-`POST /exchange/orders/create`
+`POST /exchange/v1/orders/create`
 
 ### Parameters
 
@@ -500,7 +500,7 @@ Use this endpoint to fetch status of any order
 
 ### HTTP Request
 
-`POST /exchange/orders/status`
+`POST /exchange/v1/orders/status`
 
 ### Parameters
 
@@ -553,7 +553,7 @@ Use this endpoint to fetch active orders
 
 ### HTTP Request
 
-`POST /exchange/orders/active_orders`
+`POST /exchange/v1/orders/active_orders`
 
 ### Parameters
 
@@ -583,7 +583,7 @@ side           | No  |    buy        |
 > Response:
 
 ```json 
- 3
+ { count: 1, status: 200 }
 ```
 
 
@@ -591,7 +591,7 @@ Use this endpoint to fetch active orders count
 
 ### HTTP Request
 
-`POST /exchange/orders/active_orders_count`
+`POST /exchange/v1/orders/active_orders_count`
 
 ### Parameters
 
@@ -630,7 +630,7 @@ Use this endpoint to cancel multiple active orders in a single API call
 
 ### HTTP Request
 
-`POST /exchange/orders/cancel_all`
+`POST /exchange/v1/orders/cancel_all`
 
 ### Parameters
 
@@ -678,7 +678,7 @@ Use this endpoint to cancel an active orders
 
 ### HTTP Request
 
-`POST /exchange/orders/cancel`
+`POST /exchange/v1/orders/cancel`
 
 ### Parameters
 
