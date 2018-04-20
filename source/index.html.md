@@ -155,12 +155,36 @@ This API provides with a sorted list of most recent 30 trades.
 
 ## Order book
 ### HTTP request
-`GET /exchange/v1/book/:market`
+`GET /exchange/v1/books/:market`
 
 ### Path parameters
 Name           |Required| Example     
 ---------------|---- |---------------
 market         | Yes |  SNTBTC 
+
+```json
+{  
+  "asks":{
+    "0.00160900":"23.79000000",
+    "0.00161000":"300.85",
+    "0.00161400":"11.25",
+    "0.00161500":"101.82",
+    "0.00161700":"222.37000000"
+    ,
+    ,
+    ,
+  },
+  "bids":{  
+    "0.00160400":"24.24000000",
+    "0.00160300":"7.63",
+    "0.00160100":"917.51000000",
+    "0.00159900":"40.8",
+    "0.00159700":"6"
+    ,
+    ,
+    ,
+  }
+```
 
 
 <aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
