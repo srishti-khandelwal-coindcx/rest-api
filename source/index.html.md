@@ -22,11 +22,6 @@ search: true
 Welcome to the CoinDCX API!
 <aside class="notice">The base URL for all the API calls is `https://api.coindcx.com` </aside>
 
-# API call limits
-We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
-In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second.
-
-
 # Public endpoints
 
 ## Ticker
@@ -719,3 +714,9 @@ Use this endpoint to cancel an active orders
 Name           |Required| Example    | Description
 ---------------|---- |---------------|-------
 id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
+
+
+# API call limits
+We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
+In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second.
+
