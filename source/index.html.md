@@ -196,10 +196,67 @@ market         | Yes |  SNTBTC
 > To authorize, use this code:
 
 ```ruby
+  require 'net/http'
+  require 'uri'
+  require 'json'
+  require 'openssl'
 
+
+
+  secret = "Your secret key"
+  key = "Your API key"
+
+
+  payload = {
+    "side" : "buy",
+    "order_type" : "limit_order",
+    "price_per_unit": 0.00001724,
+    "market" : "SNTBTC",
+    "total_quantity" : 100
+  }.to_json
+
+  signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secret, payload)
+
+
+  headers = {'Content-Type' => 'application/json', 'X-AUTH-APIKEY' => key, 'X-AUTH-SIGNATURE' => signature}
+
+  uri = URI.parse("https://api.coindcx.com/exchange/v1/orders/create")
+
+  https = Net::HTTP.new(uri.host, uri.port)
+  https.use_ssl = true
+  request = Net::HTTP::Post.new(uri.path, headers)
+
+  request.body = payload
+
+  response = https.request(request)
 ```
 
 ```python
+  import hmac
+  import hashlib
+  import base64
+  import json
+
+  secret = "Your secret key"
+  key = "Your API key"
+
+  body = {
+    "side" : "buy",
+    "order_type" : "limit_order",
+    "price_per_unit": 0.00001724,
+    "market" : "SNTBTC",
+    "total_quantity" : 100
+  }
+
+  json_body = json.dumps(body, separators=(',', ':'))
+
+  signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+  url = "https://api.coindcx.com/exchange/v1/orders/create"
+
+  headers = {'Content-Type': 'application/json', 'X-AUTH-APIKEY': key, 'X-AUTH-SIGNATURE': signature}
+
+  response = requests.post(url, data=json_body, headers=headers)
 
 ```
 
