@@ -474,7 +474,11 @@
   <span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">),</span> <span class="n">secret</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
 
 
-  <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span> <span class="s1">'X-AUTH-APIKEY'</span> <span class="o">=&gt;</span> <span class="n">key</span><span class="p">,</span> <span class="s1">'X-AUTH-SIGNATURE'</span> <span class="o">=&gt;</span> <span class="n">signature</span><span class="p">}</span>
+  <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
+    <span class="s1">'X-AUTH-APIKEY'</span> <span class="o">=&gt;</span> <span class="n">key</span><span class="p">,</span> 
+    <span class="s1">'X-AUTH-SIGNATURE'</span> <span class="o">=&gt;</span> <span class="n">signature</span>
+  <span class="p">}</span>
 
   <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s2">"https://api.coindcx.com/exchange/v1/orders/create"</span><span class="p">)</span>
 
@@ -507,7 +511,11 @@
 
   <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/orders/create"</span>
 
-  <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span> <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span><span class="p">}</span>
+  <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span> 
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> 
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+  <span class="p">}</span>
 
   <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
