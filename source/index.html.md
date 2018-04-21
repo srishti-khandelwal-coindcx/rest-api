@@ -218,7 +218,11 @@ market         | Yes |  SNTBTC
   signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secret, payload)
 
 
-  headers = {'Content-Type' => 'application/json', 'X-AUTH-APIKEY' => key, 'X-AUTH-SIGNATURE' => signature}
+  headers = {
+    'Content-Type' => 'application/json',
+    'X-AUTH-APIKEY' => key, 
+    'X-AUTH-SIGNATURE' => signature
+  }
 
   uri = URI.parse("https://api.coindcx.com/exchange/v1/orders/create")
 
@@ -254,7 +258,11 @@ market         | Yes |  SNTBTC
 
   url = "https://api.coindcx.com/exchange/v1/orders/create"
 
-  headers = {'Content-Type': 'application/json', 'X-AUTH-APIKEY': key, 'X-AUTH-SIGNATURE': signature}
+  headers = {
+    'Content-Type': 'application/json', 
+    'X-AUTH-APIKEY': key, 
+    'X-AUTH-SIGNATURE': signature
+  }
 
   response = requests.post(url, data=json_body, headers=headers)
 
