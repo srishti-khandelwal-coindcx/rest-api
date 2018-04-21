@@ -22,6 +22,13 @@ search: true
 Welcome to the CoinDCX API!
 <aside class="notice">The base URL for all the API calls is `https://api.coindcx.com` </aside>
 
+You can get your API key and Secret as follows
+<ul>
+  <li>Go to your CoinDCX profile section</li>
+  <li>Click `Access API dashboard`</li>
+  <li>Click Create API key button and follow the process of verifications</li>
+</ul>
+
 # Public endpoints
 
 ## Ticker
