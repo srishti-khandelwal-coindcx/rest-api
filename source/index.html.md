@@ -198,7 +198,7 @@ market         | Yes |  SNTBTC
 
 # Authentication
 
-<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body</aside>
+<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timstamp parameter of when the request was generated.</aside>
 
 > To authorize, use this code:
 
@@ -219,7 +219,8 @@ market         | Yes |  SNTBTC
     "order_type" : "limit_order",
     "price_per_unit": 0.00001724,
     "market" : "SNTBTC",
-    "total_quantity" : 100
+    "total_quantity" : 100,
+    "timestamp": 1524211224
   }.to_json
 
   signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), secret, payload)
@@ -256,7 +257,8 @@ market         | Yes |  SNTBTC
     "order_type" : "limit_order",
     "price_per_unit": 0.00001724,
     "market" : "SNTBTC",
-    "total_quantity" : 100
+    "total_quantity" : 100,
+    "timestamp": 1524211224
   }
 
   json_body = json.dumps(body, separators=(',', ':'))
@@ -289,7 +291,8 @@ body = {
   "order_type" : "limit_order",
   "price_per_unit": 0.00001724,
   "market" : "SNTBTC",
-  "total_quantity" : 100
+  "total_quantity" : 100,
+  "timestamp": 1524211224
 }
 
 const payload = new Buffer(JSON.stringify(body)).toString();
@@ -496,7 +499,7 @@ Name      |   Values
 ----------|------------
 side      |   buy, sell
 order_type|   market_order, limit_order
-
+timestamp |   1524211224
 
 
 ## New order
@@ -557,7 +560,7 @@ total_quantity | Yes | 1.101         | Quantity to trade
 price_per_unit | No  | 0.082         | Price per unit (not required for market order)
 side           | Yes | buy           | Specify buy or sell
 order_type     | Yes | market_order  | Order Type
-
+timestamp      | Yes |1524211224     | When was the request generated
 
 ##  Order status
 ```ruby
@@ -608,7 +611,7 @@ Use this endpoint to fetch status of any order
 Name           |Required| Example    | Description
 ---------------|---- |---------------|-------
 id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
-
+timestamp      | Yes |1524211224     | When was the request generated
 
 ##  Active orders
 ```ruby
@@ -662,7 +665,7 @@ Name           |Required| Example    | Description
 ---------------|---- |---------------|-------
 market         | Yes  |    SNTBTC     |
 side           | No  |    buy        |
-
+timestamp      | Yes |1524211224     | When was the request generated
 
 ##  Active orders count
 ```ruby
@@ -700,7 +703,7 @@ Name           |Required| Example    | Description
 ---------------|---- |---------------|-------
 market         | Yes  |    SNTBTC     |
 side           | No  |    buy        |
-
+timestamp      | Yes |1524211224     | When was the request generated
 
 
 ##  Cancel all
@@ -739,6 +742,7 @@ Name           |Required| Example    | Description
 ---------------|---- |---------------|-------
 market         | Yes  |    SNTBTC     |
 side           | No  |    buy        |
+timestamp      | Yes |1524211224     | When was the request generated
 
 Sending side param is optional. You may cancel all the sell orders of SNTBTC by sending
 <br>
@@ -786,7 +790,7 @@ Use this endpoint to cancel an active orders
 Name           |Required| Example    | Description
 ---------------|---- |---------------|-------
 id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
-
+timestamp      | Yes |1524211224     | When was the request generated
 
 # API call limits
 We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
