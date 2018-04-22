@@ -454,7 +454,7 @@
 </span></code></pre>
 <aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
 <h1 id='authentication'>Authentication</h1>
-<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body</aside>
+<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timstamp parameter of when the request was generated.</aside>
 
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -475,7 +475,8 @@
     <span class="s2">"order_type"</span> <span class="p">:</span> <span class="s2">"limit_order"</span><span class="p">,</span>
     <span class="s2">"price_per_unit"</span><span class="p">:</span> <span class="mi">0</span><span class="o">.</span><span class="mo">00001724</span><span class="p">,</span>
     <span class="s2">"market"</span> <span class="p">:</span> <span class="s2">"SNTBTC"</span><span class="p">,</span>
-    <span class="s2">"total_quantity"</span> <span class="p">:</span> <span class="mi">100</span>
+    <span class="s2">"total_quantity"</span> <span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="mi">1524211224</span>
   <span class="p">}.</span><span class="nf">to_json</span>
 
   <span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">),</span> <span class="n">secret</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
@@ -509,7 +510,8 @@
     <span class="s">"order_type"</span> <span class="p">:</span> <span class="s">"limit_order"</span><span class="p">,</span>
     <span class="s">"price_per_unit"</span><span class="p">:</span> <span class="mf">0.00001724</span><span class="p">,</span>
     <span class="s">"market"</span> <span class="p">:</span> <span class="s">"SNTBTC"</span><span class="p">,</span>
-    <span class="s">"total_quantity"</span> <span class="p">:</span> <span class="mi">100</span>
+    <span class="s">"total_quantity"</span> <span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="mi">1524211224</span>
   <span class="p">}</span>
 
   <span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
@@ -536,7 +538,8 @@
   <span class="s2">"order_type"</span> <span class="p">:</span> <span class="s2">"limit_order"</span><span class="p">,</span>
   <span class="s2">"price_per_unit"</span><span class="p">:</span> <span class="mf">0.00001724</span><span class="p">,</span>
   <span class="s2">"market"</span> <span class="p">:</span> <span class="s2">"SNTBTC"</span><span class="p">,</span>
-  <span class="s2">"total_quantity"</span> <span class="p">:</span> <span class="mi">100</span>
+  <span class="s2">"total_quantity"</span> <span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s2">"timestamp"</span><span class="p">:</span> <span class="mi">1524211224</span>
 <span class="p">}</span>
 
 <span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
@@ -747,6 +750,10 @@ ID | The ID of the kitten to delete -->
 <td>order_type</td>
 <td>market_order, limit_order</td>
 </tr>
+<tr>
+<td>timestamp</td>
+<td>1524211224</td>
+</tr>
 </tbody></table>
 <h2 id='new-order'>New order</h2><pre class="highlight ruby tab-ruby"><code>
 </code></pre><pre class="highlight python tab-python"><code>
@@ -818,6 +825,12 @@ ID | The ID of the kitten to delete -->
 <td>market_order</td>
 <td>Order Type</td>
 </tr>
+<tr>
+<td>timestamp</td>
+<td>Yes</td>
+<td>1524211224</td>
+<td>When was the request generated</td>
+</tr>
 </tbody></table>
 <h2 id='order-status'>Order status</h2><pre class="highlight ruby tab-ruby"><code>
 </code></pre><pre class="highlight python tab-python"><code>
@@ -860,6 +873,12 @@ ID | The ID of the kitten to delete -->
 <td>Yes</td>
 <td>ead19992-43fd-11e8-b027-bb815bcb14ed</td>
 <td>The ID of the order</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Yes</td>
+<td>1524211224</td>
+<td>When was the request generated</td>
 </tr>
 </tbody></table>
 <h2 id='active-orders'>Active orders</h2><pre class="highlight ruby tab-ruby"><code>
@@ -912,6 +931,12 @@ ID | The ID of the kitten to delete -->
 <td>buy</td>
 <td></td>
 </tr>
+<tr>
+<td>timestamp</td>
+<td>Yes</td>
+<td>1524211224</td>
+<td>When was the request generated</td>
+</tr>
 </tbody></table>
 <h2 id='active-orders-count'>Active orders count</h2><pre class="highlight ruby tab-ruby"><code>
 </code></pre><pre class="highlight python tab-python"><code>
@@ -947,6 +972,12 @@ ID | The ID of the kitten to delete -->
 <td>buy</td>
 <td></td>
 </tr>
+<tr>
+<td>timestamp</td>
+<td>Yes</td>
+<td>1524211224</td>
+<td>When was the request generated</td>
+</tr>
 </tbody></table>
 <h2 id='cancel-all'>Cancel all</h2><pre class="highlight ruby tab-ruby"><code>
 </code></pre><pre class="highlight python tab-python"><code>
@@ -981,6 +1012,12 @@ ID | The ID of the kitten to delete -->
 <td>No</td>
 <td>buy</td>
 <td></td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Yes</td>
+<td>1524211224</td>
+<td>When was the request generated</td>
 </tr>
 </tbody></table>
 
@@ -1018,6 +1055,12 @@ ID | The ID of the kitten to delete -->
 <td>Yes</td>
 <td>ead19992-43fd-11e8-b027-bb815bcb14ed</td>
 <td>The ID of the order</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Yes</td>
+<td>1524211224</td>
+<td>When was the request generated</td>
 </tr>
 </tbody></table>
 <h1 id='api-call-limits'>API call limits</h1>
