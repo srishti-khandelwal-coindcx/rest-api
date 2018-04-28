@@ -148,7 +148,7 @@ market         | Yes |  SNTBTC
 This API provides with a sorted list of most recent 30 trades.
 ### Definitions
 <ul>
-  <li>m stands for whether the trade is market maker or not.</li>
+  <li>m stands for whether the buyer is market maker or not.</li>
   <li>p is the trade price</li>
   <li>q is the quantity</li>
   <li>T is the timestamp of trade</li>
