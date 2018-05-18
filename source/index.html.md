@@ -35,22 +35,6 @@ You can get your API key and Secret as follows
 ### HTTP Request
 `GET /exchange/ticker`
 
-> Response
-
-```json
-[
-  {
-    "market": "REQBTC",
-    "change_24_hour": "-1.621",
-    "high": "0.00002799",
-    "low": "0.00002626",
-    "last_price": "0.00002663",
-    "bid": "0.00002663",
-    "ask": "0.00002669",
-    "timestamp": 1524211224
-  }
-]
-```
 ```javascript
 const request = require('request')
 
@@ -68,6 +52,22 @@ url = "https://api.coindcx.com/exchange/ticker"
 response = requests.get(url)
 data = response.json()
 print(data)
+```
+> Response
+
+```json
+[
+  {
+    "market": "REQBTC",
+    "change_24_hour": "-1.621",
+    "high": "0.00002799",
+    "low": "0.00002626",
+    "last_price": "0.00002663",
+    "bid": "0.00002663",
+    "ask": "0.00002669",
+    "timestamp": 1524211224
+  }
+]
 ```
 
 ### Definitions
@@ -87,17 +87,6 @@ print(data)
 ### HTTP Request
 `GET /exchange/v1/markets`
 
-> Respose:
-
-```json
-[
-  "SNTBTC",
-  "TRXBTC",
-  "TRXETH"
-  .
-  .
-]
-```
 ```javascript
 const request = require('request')
 
@@ -117,6 +106,17 @@ data = response.json()
 print(data)
 
 ```
+> Respose:
+
+```json
+[
+  "SNTBTC",
+  "TRXBTC",
+  "TRXETH"
+  .
+  .
+]
+```
 
 Returns an array of strings of currently active markets.
 
@@ -126,6 +126,24 @@ Returns an array of strings of currently active markets.
 
 `GET /exchange/v1/markets_details`
 
+```javascript
+const request = require('request')
+
+var baseurl = "https://api.coindcx.com"
+	
+request.get(baseurl + "/exchange/v1/markets_details",function(error, response, body) {
+	console.log(body);
+})
+```
+```python
+import requests # Install requests module first.
+
+url = "https://api.coindcx.com/exchange/v1/markets_details"
+
+response = requests.get(url)
+data = response.json()
+print(data)
+```       
 > Response:
 
 ```json
@@ -146,24 +164,6 @@ Returns an array of strings of currently active markets.
   }
 ]
 ```
-```javascript
-const request = require('request')
-
-var baseurl = "https://api.coindcx.com"
-	
-request.get(baseurl + "/exchange/v1/markets_details",function(error, response, body) {
-	console.log(body);
-})
-```
-```python
-import requests # Install requests module first.
-
-url = "https://api.coindcx.com/exchange/v1/markets_details"
-
-response = requests.get(url)
-data = response.json()
-print(data)
-```       
 
 ### Definitions
 
@@ -181,18 +181,6 @@ print(data)
 ### HTTP request
 `GET /exchange/v1/trades/:market`
 
-> Response
-
-```json
-[
-  {
-    "p":  0.00001693,
-    "q":  394,
-    "T":  1521476030955.09,
-    "m":  false
-  }
-}
-```
 ```python
 import requests # Install requests module first.
 
@@ -211,6 +199,19 @@ var baseurl = "https://api.coindcx.com"
 request.get(baseurl + "/exchange/v1/trades/SNTBTC",function(error, response, body) {
 	console.log(body);
 })
+```
+
+> Response
+
+```json
+[
+  {
+    "p":  0.00001693,
+    "q":  394,
+    "T":  1521476030955.09,
+    "m":  false
+  }
+}
 ```
 
 ### Path parameters
@@ -237,6 +238,28 @@ Name           |Required| Example
 ---------------|---- |---------------
 market         | Yes |  SNTBTC 
 
+```javascript
+const request = require('request')
+
+var baseurl = "https://api.coindcx.com"
+
+// Replace the "ETHBTC" with the desired market pair.
+request.get(baseurl + "/exchange/v1/books/SNTBTC",function(error, response, body) {
+	console.log(body);
+})
+```
+```python
+import requests # Install requests module first.
+
+url = "https://api.coindcx.com/exchange/v1/books/SNTBTC" # Replace 'ETHBTC' with the desired market pair.
+
+response = requests.get(url)
+data = response.json()
+print(data)
+
+```
+> Response
+
 ```json
 {  
   "asks":{
@@ -259,26 +282,6 @@ market         | Yes |  SNTBTC
     ,
     ,
   }
-```
-```javascript
-const request = require('request')
-
-var baseurl = "https://api.coindcx.com"
-
-// Replace the "ETHBTC" with the desired market pair.
-request.get(baseurl + "/exchange/v1/books/SNTBTC",function(error, response, body) {
-	console.log(body);
-})
-```
-```python
-import requests # Install requests module first.
-
-url = "https://api.coindcx.com/exchange/v1/books/SNTBTC" # Replace 'ETHBTC' with the desired market pair.
-
-response = requests.get(url)
-data = response.json()
-print(data)
-
 ```
 
 <aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
