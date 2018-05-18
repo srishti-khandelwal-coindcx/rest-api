@@ -28,9 +28,9 @@ You can get your API key and Secret as follows
   <li>Click `Access API dashboard`</li>
   <li>Click Create API key button and follow the process of verifications</li>
 </ul>
-<br>
-The python version used for API samples is 2.7
-<br>
+
+> The python version used for API samples is 2.7
+
 # Public endpoints
 
 ## Ticker
