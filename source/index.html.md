@@ -184,7 +184,7 @@ print(data)
 ```python
 import requests # Install requests module first.
 
-url = "https://api.coindcx.com/exchange/v1/trades/SNTBTC" # Replace 'ETHBTC' with your desired market pair.
+url = "https://api.coindcx.com/exchange/v1/trades/SNTBTC" # Replace 'SNTBTC' with your desired market pair.
 
 response = requests.get(url)
 data = response.json()
@@ -195,7 +195,7 @@ const request = require('request')
 
 var baseurl = "https://api.coindcx.com"
 
-// Replace the "ETHBTC" with the desired market pair.
+// Replace the "SNTBTC" with the desired market pair.
 request.get(baseurl + "/exchange/v1/trades/SNTBTC",function(error, response, body) {
 	console.log(body);
 })
@@ -243,7 +243,7 @@ const request = require('request')
 
 var baseurl = "https://api.coindcx.com"
 
-// Replace the "ETHBTC" with the desired market pair.
+// Replace the "SNTBTC" with the desired market pair.
 request.get(baseurl + "/exchange/v1/books/SNTBTC",function(error, response, body) {
 	console.log(body);
 })
@@ -251,7 +251,7 @@ request.get(baseurl + "/exchange/v1/books/SNTBTC",function(error, response, body
 ```python
 import requests # Install requests module first.
 
-url = "https://api.coindcx.com/exchange/v1/books/SNTBTC" # Replace 'ETHBTC' with the desired market pair.
+url = "https://api.coindcx.com/exchange/v1/books/SNTBTC" # Replace 'SNTBTC' with the desired market pair.
 
 response = requests.get(url)
 data = response.json()
@@ -392,7 +392,7 @@ secret = "";
 	body = {
 		"side": "buy",	//Toggle between 'buy' or 'sell'.
 		"order_type": "limit_order", //Toggle between a 'market_order' or 'limit_order'.
-		"market": "ETHBTC", //Replace 'ETHBTC' with your desired market pair.
+		"market": "SNTBTC", //Replace 'SNTBTC' with your desired market pair.
 		"price_per_unit": "0.03244", //This parameter is only required for a 'limit_order'
 		"total_quantity": 400, //Replace this with the quantity you want
 		"timestamp": timeStamp
@@ -790,7 +790,7 @@ Use this endpoint to place a new order on the exchange
 
 Name           |Required| Example    | Description
 ---------------|---- |---------------|-------
-market         | Yes | ETHBTC        | The trading pair
+market         | Yes | SNTBTC        | The trading pair
 total_quantity | Yes | 1.101         | Quantity to trade 
 price_per_unit | No  | 0.082         | Price per unit (not required for market order)
 side           | Yes | buy           | Specify buy or sell
