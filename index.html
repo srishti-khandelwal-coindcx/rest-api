@@ -321,7 +321,21 @@
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524211224</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='definitions'>Definitions</h3>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/ticker"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/ticker"</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre><h3 id='definitions'>Definitions</h3>
 <ul>
   <li>bid - Highest bid offer in the orderbook</li>
   <li>ask - Highest ask offer in the orderbook</li>
@@ -344,7 +358,22 @@
   </span><span class="err">.</span><span class="w">
   </span><span class="err">.</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/markets"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/markets"</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+</code></pre>
 <p>Returns an array of strings of currently active markets.</p>
 <h2 id='markets-details'>Markets details</h2><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /exchange/v1/markets_details</code></p>
@@ -368,7 +397,21 @@
     </span><span class="s2">"order_types"</span><span class="p">:</span><span class="w">                </span><span class="p">[</span><span class="s2">"market_order"</span><span class="p">,</span><span class="w"> </span><span class="s2">"limit_order"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='definitions-2'>Definitions</h3>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/markets_details"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/markets_details"</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre><h3 id='definitions-2'>Definitions</h3>
 <ul>
   <li>min_quantity - It is the minimum quantity of target currency (SNT) for which an order may be placed</li>
   <li>max_quantity - It is the maximum quantity of target currency (SNT) for which an order may be placed</li>
@@ -391,7 +434,22 @@
     </span><span class="s2">"m"</span><span class="p">:</span><span class="w">  </span><span class="kc">false</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='path-parameters'>Path parameters</h3>
+</span></code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/trades/SNTBTC"</span> <span class="c"># Replace 'ETHBTC' with your desired market pair.</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="c1">// Replace the "ETHBTC" with the desired market pair.</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/trades/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><h3 id='path-parameters'>Path parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -451,7 +509,23 @@
     </span><span class="p">,</span><span class="w">
     </span><span class="p">,</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="c1">// Replace the "ETHBTC" with the desired market pair.</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/books/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/books/SNTBTC"</span> <span class="c"># Replace 'ETHBTC' with the desired market pair.</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+</code></pre>
 <aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
 <h1 id='authentication'>Authentication</h1>
 <aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timstamp parameter of when the request was generated.</aside>
@@ -529,42 +603,43 @@
   <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
 </code></pre><pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
-<span class="nx">key</span> <span class="o">=</span> <span class="s2">"Your api key"</span>
-<span class="nx">secret</span> <span class="o">=</span> <span class="s2">"Your secret key"</span>
-<span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"side"</span> <span class="p">:</span> <span class="s2">"buy"</span><span class="p">,</span>
-  <span class="s2">"order_type"</span> <span class="p">:</span> <span class="s2">"limit_order"</span><span class="p">,</span>
-  <span class="s2">"price_per_unit"</span><span class="p">:</span> <span class="mf">0.00001724</span><span class="p">,</span>
-  <span class="s2">"market"</span> <span class="p">:</span> <span class="s2">"SNTBTC"</span><span class="p">,</span>
-  <span class="s2">"total_quantity"</span> <span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-  <span class="s2">"timestamp"</span><span class="p">:</span> <span class="mi">1524211224</span>
-<span class="p">}</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
 
-<span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
 
-<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span>
-  <span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
 
-<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s2">"https://api.coindcx.com/exchange/v1/orders/create"</span><span class="p">,</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
-    <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
-  <span class="p">},</span>
-  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
-<span class="p">}</span>
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
 
-<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
-  <span class="nx">options</span><span class="p">,</span>
-  <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'body:'</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">)</span>
+
+    <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"side"</span><span class="p">:</span> <span class="s2">"buy"</span><span class="p">,</span>  <span class="c1">//Toggle between 'buy' or 'sell'.</span>
+        <span class="s2">"order_type"</span><span class="p">:</span> <span class="s2">"limit_order"</span><span class="p">,</span> <span class="c1">//Toggle between a 'market_order' or 'limit_order'.</span>
+        <span class="s2">"market"</span><span class="p">:</span> <span class="s2">"ETHBTC"</span><span class="p">,</span> <span class="c1">//Replace 'ETHBTC' with your desired market pair.</span>
+        <span class="s2">"price_per_unit"</span><span class="p">:</span> <span class="s2">"0.03244"</span><span class="p">,</span> <span class="c1">//This parameter is only required for a 'limit_order'</span>
+        <span class="s2">"total_quantity"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="c1">//Replace this with the quantity you want</span>
+        <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
+    <span class="p">}</span>
+
+    <span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+    <span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+    <span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/orders/create"</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+            <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+        <span class="p">},</span>
+        <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+    <span class="p">}</span>
+
+    <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+    <span class="p">})</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace API key and API secret with your own.</p>
@@ -601,9 +676,74 @@
 You must replace <code>your-api-key</code> and <code>signature</code> with your personal API key and generated signature respectively.
 </aside>
 <h1 id='user'>User</h1><h2 id='get-balances'>Get balances</h2><pre class="highlight ruby tab-ruby"><code>
-</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Enter your API Key and Secret here. If you don't have one, you can generate it from the website.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="c"># Generating a timestamp</span>
+<span class="n">timeStamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">timeStamp</span>
+<span class="p">}</span>
+
+<span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span> <span class="o">=</span> <span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/users/balances"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">();</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
 </code></pre><pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="c1">// To check if the timestamp is correct</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStamp</span><span class="p">);</span>
+
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span>
+
+
+<span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/users/balances"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+        <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+    <span class="p">},</span>
+    <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+<span class="p">}</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -756,9 +896,83 @@ ID | The ID of the kitten to delete -->
 </tr>
 </tbody></table>
 <h2 id='new-order'>New order</h2><pre class="highlight ruby tab-ruby"><code>
-</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Enter your API Key and Secret here. If you don't have one, you can generate it from the website.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="c"># Generating a timestamp.</span>
+<span class="n">timeStamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"side"</span><span class="p">:</span> <span class="s">"buy"</span><span class="p">,</span>  <span class="c">#Toggle between 'buy' or 'sell'.</span>
+    <span class="s">"order_type"</span><span class="p">:</span> <span class="s">"limit_order"</span><span class="p">,</span> <span class="c">#Toggle between a 'market_order' or 'limit_order'.</span>
+    <span class="s">"market"</span><span class="p">:</span> <span class="s">"SNTBTC"</span><span class="p">,</span> <span class="c">#Replace 'SNTBTC' with your desired market pair.</span>
+    <span class="s">"price_per_unit"</span><span class="p">:</span> <span class="s">"0.03244"</span><span class="p">,</span> <span class="c">#This parameter is only required for a 'limit_order'</span>
+    <span class="s">"total_quantity"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="c">#Replace this with the quantity you want</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">timeStamp</span>
+<span class="p">}</span>
+
+<span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span> <span class="o">=</span> <span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/orders/create"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+
+
+<span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"side"</span><span class="p">:</span> <span class="s2">"buy"</span><span class="p">,</span>  <span class="c1">//Toggle between 'buy' or 'sell'.</span>
+    <span class="s2">"order_type"</span><span class="p">:</span> <span class="s2">"limit_order"</span><span class="p">,</span> <span class="c1">//Toggle between a 'market_order' or 'limit_order'.</span>
+    <span class="s2">"market"</span><span class="p">:</span> <span class="s2">"SNTBTC"</span><span class="p">,</span> <span class="c1">//Replace 'SNTBTC' with your desired market.</span>
+    <span class="s2">"price_per_unit"</span><span class="p">:</span> <span class="s2">"0.03244"</span><span class="p">,</span> <span class="c1">//This parameter is only required for a 'limit_order'</span>
+    <span class="s2">"total_quantity"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="c1">//Replace this with the quantity you want</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/orders/create"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+        <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+    <span class="p">},</span>
+    <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+<span class="p">}</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -833,9 +1047,76 @@ ID | The ID of the kitten to delete -->
 </tr>
 </tbody></table>
 <h2 id='order-status'>Order status</h2><pre class="highlight ruby tab-ruby"><code>
-</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Enter your API Key and Secret here. If you don't have one, you can generate it from the website.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="c"># Generating a timestamp.</span>
+<span class="n">timeStamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"id"</span><span class="p">:</span> <span class="s">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span> <span class="c"># Enter your Order ID here.</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">timeStamp</span>
+<span class="p">}</span>
+
+<span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span> <span class="o">=</span> <span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/orders/status"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="c1">// To check if the timestamp is correct</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStamp</span><span class="p">);</span>
+
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+
+
+<span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"qwd19992-43fd-14e8-b027-bb815bnb14ed"</span><span class="p">,</span> <span class="c1">//Replace it with your Order ID.</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/orders/status"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+        <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+    <span class="p">},</span>
+    <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+<span class="p">}</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -882,9 +1163,78 @@ ID | The ID of the kitten to delete -->
 </tr>
 </tbody></table>
 <h2 id='active-orders'>Active orders</h2><pre class="highlight ruby tab-ruby"><code>
-</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Enter your API Key and Secret here. If you don't have one, you can generate it from the website.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="c"># Generating a timestamp.</span>
+<span class="n">timeStamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"side"</span><span class="p">:</span> <span class="s">"buy"</span><span class="p">,</span> <span class="c"># Toggle between a 'buy' or 'sell' order.</span>
+    <span class="s">"market"</span><span class="p">:</span> <span class="s">"SNTBTC"</span><span class="p">,</span> <span class="c"># Replace 'SNTBTC' with your desired market pair.</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">timeStamp</span>
+<span class="p">}</span>
+
+<span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span> <span class="o">=</span> <span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/orders/active_orders"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="c1">// To check if the timestamp is correct</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStamp</span><span class="p">);</span>
+
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+
+
+<span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"side"</span><span class="p">:</span> <span class="s2">"buy"</span><span class="p">,</span> <span class="c1">//Toggle between 'buy' or 'sell'.</span>
+    <span class="s2">"market"</span><span class="p">:</span> <span class="s2">"SNTBTC"</span><span class="p">,</span> <span class="c1">//Replace 'SNTBTC' with your desired market pair.</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/orders/active_orders"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+        <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+    <span class="p">},</span>
+    <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+<span class="p">}</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -939,9 +1289,78 @@ ID | The ID of the kitten to delete -->
 </tr>
 </tbody></table>
 <h2 id='active-orders-count'>Active orders count</h2><pre class="highlight ruby tab-ruby"><code>
-</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Enter your API Key and Secret here. If you don't have one, you can generate it from the website.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="c"># Generating a timestamp.</span>
+<span class="n">timeStamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"side"</span><span class="p">:</span> <span class="s">"buy"</span><span class="p">,</span> <span class="c"># Toggle between a 'buy' or 'sell' order.</span>
+    <span class="s">"market"</span><span class="p">:</span> <span class="s">"SNTBTC"</span><span class="p">,</span> <span class="c"># Replace 'SNTBTC' with your desired market pair.</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">timeStamp</span>
+<span class="p">}</span>
+
+<span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span> <span class="o">=</span> <span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/orders/active_orders_count"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="c1">// To check if the timestamp is correct</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStamp</span><span class="p">);</span>
+
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+
+
+<span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"side"</span><span class="p">:</span> <span class="s2">"buy"</span><span class="p">,</span> <span class="c1">//Toggle between 'buy' or 'sell'.</span>
+    <span class="s2">"market"</span><span class="p">:</span> <span class="s2">"SNTBTC"</span><span class="p">,</span> <span class="c1">//Replace 'SNTBTC' with your desired market pair.</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/orders/active_orders_count"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+        <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+    <span class="p">},</span>
+    <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+<span class="p">}</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -980,9 +1399,78 @@ ID | The ID of the kitten to delete -->
 </tr>
 </tbody></table>
 <h2 id='cancel-all'>Cancel all</h2><pre class="highlight ruby tab-ruby"><code>
-</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Enter your API Key and Secret here. If you don't have one, you can generate it from the website.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="c"># Generating a timestamp.</span>
+<span class="n">timeStamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"side"</span><span class="p">:</span> <span class="s">"buy"</span><span class="p">,</span> <span class="c"># Toggle between a 'buy' or 'sell' order.</span>
+    <span class="s">"market"</span><span class="p">:</span> <span class="s">"SNTBTC"</span><span class="p">,</span> <span class="c"># Replace 'SNTBTC' with your desired market pair.</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">timeStamp</span>
+<span class="p">}</span>
+
+<span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span> <span class="o">=</span> <span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/orders/cancel_all"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="c1">// To check if the timestamp is correct</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStamp</span><span class="p">);</span>
+
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+
+
+    <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"side"</span><span class="p">:</span> <span class="s2">"buy"</span><span class="p">,</span> <span class="c1">//Toggle between 'buy' or 'sell'. Not compulsory</span>
+        <span class="s2">"market"</span><span class="p">:</span> <span class="s2">"SNTBTC"</span><span class="p">,</span> <span class="c1">//Replace 'SNTBTC' with your desired market pair.</span>
+        <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
+    <span class="p">}</span>
+
+    <span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+    <span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+    <span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/orders/cancel_all"</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+            <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+        <span class="p">},</span>
+        <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+    <span class="p">}</span>
+
+    <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+    <span class="p">})</span>
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -1029,9 +1517,77 @@ ID | The ID of the kitten to delete -->
 <br>
 <code>{market: &quot;SNTBTC&quot;}</code></p>
 <h2 id='cancel'>Cancel</h2><pre class="highlight ruby tab-ruby"><code>
-</code></pre><pre class="highlight python tab-python"><code>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Enter your API Key and Secret here. If you don't have one, you can generate it from CoinDCX website.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="c"># Generating a timestamp.</span>
+<span class="n">timeStamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"id"</span><span class="p">:</span> <span class="s">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span> <span class="c"># Enter your Order ID here.</span>
+    <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">timeStamp</span>
+<span class="p">}</span>
+
+<span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span> <span class="o">=</span> <span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/orders/cancel"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="c1">// To check if the timestamp is correct</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStamp</span><span class="p">);</span>
+
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+
+
+<span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span> <span class="c1">//Replace this with your Order ID.</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/orders/cancel"</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+        <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+    <span class="p">},</span>
+    <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+<span class="p">}</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+
 </code></pre>
 <blockquote>
 <p>Response:</p>
