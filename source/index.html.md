@@ -28,7 +28,9 @@ You can get your API key and Secret as follows
   <li>Click `Access API dashboard`</li>
   <li>Click Create API key button and follow the process of verifications</li>
 </ul>
-
+<br>
+The python version used for API samples is 2.7
+<br>
 # Public endpoints
 
 ## Ticker
@@ -337,6 +339,8 @@ print(data)
 
   response = https.request(request)
 ```
+
+> Sample order creation with auth
 
 ```python
   import hmac
