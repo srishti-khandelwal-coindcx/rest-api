@@ -424,7 +424,7 @@
 <p><code>GET /exchange/v1/trades/:market</code></p>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/trades/SNTBTC"</span> <span class="c"># Replace 'ETHBTC' with your desired market pair.</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/trades/SNTBTC"</span> <span class="c"># Replace 'SNTBTC' with your desired market pair.</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -433,7 +433,7 @@
 
 <span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
 
-<span class="c1">// Replace the "ETHBTC" with the desired market pair.</span>
+<span class="c1">// Replace the "SNTBTC" with the desired market pair.</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/trades/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">})</span>
@@ -492,13 +492,13 @@
 
 <span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
 
-<span class="c1">// Replace the "ETHBTC" with the desired market pair.</span>
+<span class="c1">// Replace the "SNTBTC" with the desired market pair.</span>
 <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/books/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/books/SNTBTC"</span> <span class="c"># Replace 'ETHBTC' with the desired market pair.</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/books/SNTBTC"</span> <span class="c"># Replace 'SNTBTC' with the desired market pair.</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -622,7 +622,7 @@
     <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">"side"</span><span class="p">:</span> <span class="s2">"buy"</span><span class="p">,</span>  <span class="c1">//Toggle between 'buy' or 'sell'.</span>
         <span class="s2">"order_type"</span><span class="p">:</span> <span class="s2">"limit_order"</span><span class="p">,</span> <span class="c1">//Toggle between a 'market_order' or 'limit_order'.</span>
-        <span class="s2">"market"</span><span class="p">:</span> <span class="s2">"ETHBTC"</span><span class="p">,</span> <span class="c1">//Replace 'ETHBTC' with your desired market pair.</span>
+        <span class="s2">"market"</span><span class="p">:</span> <span class="s2">"SNTBTC"</span><span class="p">,</span> <span class="c1">//Replace 'SNTBTC' with your desired market pair.</span>
         <span class="s2">"price_per_unit"</span><span class="p">:</span> <span class="s2">"0.03244"</span><span class="p">,</span> <span class="c1">//This parameter is only required for a 'limit_order'</span>
         <span class="s2">"total_quantity"</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="c1">//Replace this with the quantity you want</span>
         <span class="s2">"timestamp"</span><span class="p">:</span> <span class="nx">timeStamp</span>
@@ -1016,7 +1016,7 @@ ID | The ID of the kitten to delete -->
 <tr>
 <td>market</td>
 <td>Yes</td>
-<td>ETHBTC</td>
+<td>SNTBTC</td>
 <td>The trading pair</td>
 </tr>
 <tr>
