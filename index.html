@@ -305,7 +305,21 @@
 </ul></p>
 <h1 id='public-endpoints'>Public endpoints</h1><h2 id='ticker'>Ticker</h2><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /exchange/ticker</code></p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
 
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/ticker"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/ticker"</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre>
 <blockquote>
 <p>Response</p>
 </blockquote>
@@ -321,21 +335,7 @@
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524211224</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
-
-<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
-
-<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/ticker"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
-<span class="p">})</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/ticker"</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre><h3 id='definitions'>Definitions</h3>
+</span></code></pre><h3 id='definitions'>Definitions</h3>
 <ul>
   <li>bid - Highest bid offer in the orderbook</li>
   <li>ask - Highest ask offer in the orderbook</li>
@@ -347,18 +347,7 @@
 <aside>A ticker is generated once every second</aside>
 <h2 id='markets'>Markets</h2><h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /exchange/v1/markets</code></p>
-
-<blockquote>
-<p>Respose:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="s2">"SNTBTC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"TRXBTC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"TRXETH"</span><span class="w">
-  </span><span class="err">.</span><span class="w">
-  </span><span class="err">.</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
 
 <span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
 
@@ -374,10 +363,35 @@
 <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 </code></pre>
+<blockquote>
+<p>Respose:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"SNTBTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"TRXBTC"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"TRXETH"</span><span class="w">
+  </span><span class="err">.</span><span class="w">
+  </span><span class="err">.</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
 <p>Returns an array of strings of currently active markets.</p>
 <h2 id='markets-details'>Markets details</h2><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /exchange/v1/markets_details</code></p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
 
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/markets_details"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/markets_details"</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -397,21 +411,7 @@
     </span><span class="s2">"order_types"</span><span class="p">:</span><span class="w">                </span><span class="p">[</span><span class="s2">"market_order"</span><span class="p">,</span><span class="w"> </span><span class="s2">"limit_order"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
-
-<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
-
-<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/markets_details"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
-<span class="p">})</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/markets_details"</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre><h3 id='definitions-2'>Definitions</h3>
+</span></code></pre><h3 id='definitions-2'>Definitions</h3>
 <ul>
   <li>min_quantity - It is the minimum quantity of target currency (SNT) for which an order may be placed</li>
   <li>max_quantity - It is the maximum quantity of target currency (SNT) for which an order may be placed</li>
@@ -422,19 +422,7 @@
 </ul>
 <h2 id='trades'>Trades</h2><h3 id='http-request-4'>HTTP request</h3>
 <p><code>GET /exchange/v1/trades/:market</code></p>
-
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"p"</span><span class="p">:</span><span class="w">  </span><span class="mf">0.00001693</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"q"</span><span class="p">:</span><span class="w">  </span><span class="mi">394</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"T"</span><span class="p">:</span><span class="w">  </span><span class="mf">1521476030955.09</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w">  </span><span class="kc">false</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/trades/SNTBTC"</span> <span class="c"># Replace 'ETHBTC' with your desired market pair.</span>
 
@@ -449,7 +437,19 @@
 <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/trades/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">})</span>
-</code></pre><h3 id='path-parameters'>Path parameters</h3>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"p"</span><span class="p">:</span><span class="w">  </span><span class="mf">0.00001693</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w">  </span><span class="mi">394</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"T"</span><span class="p">:</span><span class="w">  </span><span class="mf">1521476030955.09</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w">  </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='path-parameters'>Path parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -488,6 +488,26 @@
 <td>SNTBTC</td>
 </tr>
 </tbody></table>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="c1">// Replace the "ETHBTC" with the desired market pair.</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/books/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/books/SNTBTC"</span> <span class="c"># Replace 'ETHBTC' with the desired market pair.</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"asks"</span><span class="p">:{</span><span class="w">
     </span><span class="s2">"0.00160900"</span><span class="p">:</span><span class="s2">"23.79000000"</span><span class="p">,</span><span class="w">
@@ -509,23 +529,7 @@
     </span><span class="p">,</span><span class="w">
     </span><span class="p">,</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
-
-<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
-
-<span class="c1">// Replace the "ETHBTC" with the desired market pair.</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/books/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
-<span class="p">})</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/books/SNTBTC"</span> <span class="c"># Replace 'ETHBTC' with the desired market pair.</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-</code></pre>
+</span></code></pre>
 <aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
 <h1 id='authentication'>Authentication</h1>
 <aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timstamp parameter of when the request was generated.</aside>
@@ -1660,6 +1664,8 @@ In aggregate, you may call <code>https//api.coindcx.com</code> not more than 10 
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+
+<p>Contributed by Karthik Verma.</p>
 
       </div>
       <div class="dark-box">
