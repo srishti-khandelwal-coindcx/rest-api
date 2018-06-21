@@ -343,36 +343,44 @@ print(data)
 > Sample order creation with auth
 
 ```python
-  import hmac
-  import hashlib
-  import base64
-  import json
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
 
-  secret = "Your secret key"
-  key = "Your API key"
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
 
-  body = {
-    "side" : "buy",
-    "order_type" : "limit_order",
-    "price_per_unit": 0.00001724,
-    "market" : "SNTBTC",
-    "total_quantity" : 100,
-    "timestamp": 1524211224
-  }
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
 
-  json_body = json.dumps(body, separators=(',', ':'))
+body = {
+    "side": "buy",  #Toggle between 'buy' or 'sell'.
+  "order_type": "limit_order", #Toggle between a 'market_order' or 'limit_order'.
+  "market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
+  "price_per_unit": "0.03244", #This parameter is only required for a 'limit_order'
+  "total_quantity": 400, #Replace this with the quantity you want
+  "timestamp": timeStamp
+}
 
-  signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+json_body = json.dumps(body, separators = (',', ':'))
 
-  url = "https://api.coindcx.com/exchange/v1/orders/create"
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
 
-  headers = {
-    'Content-Type': 'application/json', 
-    'X-AUTH-APIKEY': key, 
+url = "https://api.coindcx.com/exchange/v1/orders/create"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
     'X-AUTH-SIGNATURE': signature
-  }
+}
 
-  response = requests.post(url, data=json_body, headers=headers)
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
 
 ```
 
