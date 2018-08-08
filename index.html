@@ -268,6 +268,9 @@
                     <a href="#active-orders" class="toc-h2 toc-link" data-title="active-orders">Active orders</a>
                   </li>
                   <li>
+                    <a href="#account-trade-history" class="toc-h2 toc-link" data-title="account-trade-history">Account Trade history</a>
+                  </li>
+                  <li>
                     <a href="#active-orders-count" class="toc-h2 toc-link" data-title="active-orders-count">Active orders count</a>
                   </li>
                   <li>
@@ -1308,6 +1311,120 @@ ID | The ID of the kitten to delete -->
 <td>When was the request generated</td>
 </tr>
 </tbody></table>
+<h2 id='account-trade-history'>Account Trade history</h2><pre class="highlight ruby tab-ruby"><code>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c"># Enter your API Key and Secret here. If you don't have one, you can generate it from the website.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="c"># Generating a timestamp.</span>
+<span class="n">timeStamp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"from_id"</span><span class="p">:</span> <span class="mi">352622</span><span class="p">,</span>
+  <span class="s">"limit"</span><span class="p">:</span> <span class="mi">50</span>
+<span class="p">}</span>
+
+<span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">separators</span> <span class="o">=</span> <span class="p">(</span><span class="s">','</span><span class="p">,</span> <span class="s">':'</span><span class="p">))</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/orders/trade_history"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+    <span class="s">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="n">signature</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_body</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'crypto'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+
+<span class="kd">var</span> <span class="nx">timeStamp</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+<span class="c1">// To check if the timestamp is correct</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStamp</span><span class="p">);</span>
+
+<span class="c1">// Place your API key and secret below. You can generate it from the website.</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+<span class="nx">secret</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+
+
+<span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"from_id"</span><span class="p">:</span> <span class="mi">352622</span><span class="p">,</span>
+  <span class="s2">"limit"</span><span class="p">:</span> <span class="mi">50</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)).</span><span class="nx">toString</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">payload</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">'hex'</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">url</span><span class="p">:</span> <span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/orders/trade_history"</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">'X-AUTH-APIKEY'</span><span class="p">:</span> <span class="nx">key</span><span class="p">,</span>
+    <span class="s1">'X-AUTH-SIGNATURE'</span><span class="p">:</span> <span class="nx">signature</span>
+  <span class="p">},</span>
+  <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">body</span>
+<span class="p">}</span>
+
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
+<blockquote>
+<p>Response
+<code>json
+[
+  {
+    &quot;id&quot;:                         564389,
+    &quot;order_id&quot;:                   &quot;ee060ab6-40ed-11e8-b4b9-3f2ce29cd280&quot;,
+    &quot;side&quot;:                       &quot;buy&quot;,
+    &quot;fee_amount&quot;:                 &quot;0.00001129&quot;,
+    &quot;ecode&quot;:                      &quot;B&quot;,
+    &quot;quantity&quot;:                   67.9,
+    &quot;price&quot;:                      0.00008272,
+    &quot;symbol&quot;:                     &quot;SNTBTC&quot;,
+    &quot;timestamp&quot;:                  1533700109811
+  }
+]
+</code>
+Use this endpoint to fetch trades associated with your account</p>
+</blockquote>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST /exchange/v1/orders/trade_history</code></p>
+<h3 id='parameters-4'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>No</td>
+<td>100</td>
+<td>Default 500</td>
+</tr>
+<tr>
+<td>from_id</td>
+<td>No</td>
+<td>28473</td>
+<td>Trade ID after which you want the data. If not supplied, latest trades would be given</td>
+</tr>
+</tbody></table>
 <h2 id='active-orders-count'>Active orders count</h2><pre class="highlight ruby tab-ruby"><code>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
@@ -1388,9 +1505,9 @@ ID | The ID of the kitten to delete -->
 <pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">count</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="err">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to fetch active orders count</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/active_orders_count</code></p>
-<h3 id='parameters-4'>Parameters</h3>
+<h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1498,9 +1615,9 @@ ID | The ID of the kitten to delete -->
 <pre class="highlight json tab-json"><code><span class="w">
 </span></code></pre>
 <p>Use this endpoint to cancel multiple active orders in a single API call</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/cancel_all</code></p>
-<h3 id='parameters-5'>Parameters</h3>
+<h3 id='parameters-6'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -1615,9 +1732,9 @@ ID | The ID of the kitten to delete -->
 <pre class="highlight json tab-json"><code><span class="w">
 </span></code></pre>
 <p>Use this endpoint to cancel an active orders</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/cancel</code></p>
-<h3 id='parameters-6'>Parameters</h3>
+<h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
