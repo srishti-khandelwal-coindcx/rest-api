@@ -1050,6 +1050,117 @@ market         | Yes  |    SNTBTC     |
 side           | No  |    buy        |
 timestamp      | Yes |1524211224     | When was the request generated
 
+## Account Trade history
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "from_id": 352622,
+  "limit": 50
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/orders/trade_history"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "from_id": 352622,
+  "limit": 50
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/orders/trade_history",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+```
+
+> Response
+```json
+[
+  {
+    "id":                         564389,
+    "order_id":                   "ee060ab6-40ed-11e8-b4b9-3f2ce29cd280",
+    "side":                       "buy",
+    "fee_amount":                 "0.00001129",
+    "ecode":                      "B",
+    "quantity":                   67.9,
+    "price":                      0.00008272,
+    "symbol":                     "SNTBTC",
+    "timestamp":                  1533700109811
+  }
+]
+```
+Use this endpoint to fetch trades associated with your account
+
+### HTTP Request
+
+`POST /exchange/v1/orders/trade_history`
+
+### Parameters
+
+Name           |Required| Example    | Description
+---------------|---- |---------------|-------
+limit          | No  |    100        | Default 500
+from_id        | No  |    28473      | Trade ID after which you want the data. If not supplied, latest trades would be given
+
+
+
 ##  Active orders count
 ```ruby
 
