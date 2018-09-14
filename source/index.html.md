@@ -221,7 +221,7 @@ Name           |Required| Example
 ---------------|---- |---------------
 market         | Yes |  SNTBTC 
 
-This API provides with a sorted list of most recent 30 trades.
+This API provides with a sorted list of most recent 50 trades.
 ### Definitions
 <ul>
   <li>m stands for whether the buyer is market maker or not.</li>
