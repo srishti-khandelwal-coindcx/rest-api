@@ -673,7 +673,7 @@ Name      |   Values
 side      |   buy, sell
 order_type|   market_order, limit_order
 timestamp |   1524211224
-
+ecode     |   I, B, HB
 
 ## New order
 
@@ -809,6 +809,164 @@ side           | Yes | buy           | Specify buy or sell
 order_type     | Yes | market_order  | Order Type
 timestamp      | Yes |1524211224     | When was the request generated
 
+## Create multiple orders
+
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {"orders":[
+    "side": "buy",  #Toggle between 'buy' or 'sell'.
+    "order_type": "limit_order", #Toggle between a 'market_order' or 'limit_order'.
+    "market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
+    "price_per_unit": 0.03244, #This parameter is only required for a 'limit_order'
+    "total_quantity": 400, #Replace this with the quantity you want
+    "timestamp": timeStamp,
+    "ecode": "I"
+  ],
+  [
+    "side": "buy",  #Toggle between 'buy' or 'sell'.
+    "order_type": "limit_order", #Toggle between a 'market_order' or 'limit_order'.
+    "market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
+    "price_per_unit": 0.03244, #This parameter is only required for a 'limit_order'
+    "total_quantity": 400, #Replace this with the quantity you want
+    "timestamp": timeStamp,
+    "ecode": "I"
+  ]
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/orders/create_multiple"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {"orders": [{
+          "side": "buy",  //Toggle between 'buy' or 'sell'.
+          "order_type": "limit_order", //Toggle between a 'market_order' or 'limit_order'.
+          "market": "BTCINR", //Replace 'SNTBTC' with your desired market.
+          "price_per_unit": "466330", //This parameter is only required for a 'limit_order'
+          "total_quantity": 0.01, //Replace this with the quantity you want
+          "timestamp": timeStamp,
+          "ecode": "I"
+        },
+        {
+          "side": "buy",  //Toggle between 'buy' or 'sell'.
+          "order_type": "limit_order", //Toggle between a 'market_order' or 'limit_order'.
+          "market": "BTCINR", //Replace 'SNTBTC' with your desired market.
+          "price_per_unit": "466330", //This parameter is only required for a 'limit_order'
+          "total_quantity": 0.01, //Replace this with the quantity you want
+          "timestamp": timeStamp,
+          "ecode": "I"
+        }
+      ]}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/orders/create_multiple",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+
+```
+
+> Response:
+
+```json
+{  
+   "orders":[  
+     {  
+        "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+        "market":"TRXETH",
+        "order_type":"limit_order",
+        "side":"buy",
+        "status":"open",
+        "fee_amount":0.0000008,
+        "fee":0.1,
+        "total_quantity":2,
+        "remaining_quantity":2.0,
+        "avg_price":0.0,
+        "price_per_unit":0.00001567,
+        "created_at":"2018-04-19T18:17:28.022Z",
+        "updated_at":"2018-04-19T18:17:28.022Z"
+     }
+   ]
+}
+```
+
+
+Use this endpoint to place a multiple orders on the exchange
+
+### HTTP Request
+
+`POST /exchange/v1/orders/create_multiple`
+
+### Parameters in an array of objects
+
+Name           |Required| Example    | Description
+---------------|---- |---------------|-------
+market         | Yes | SNTBTC        | The trading pair
+total_quantity | Yes | 1.101         | Quantity to trade 
+price_per_unit | No  | 0.082         | Price per unit (not required for market order)
+side           | Yes | buy           | Specify buy or sell
+order_type     | Yes | market_order  | Order Type
+timestamp      | Yes |1524211224     | When was the request generated
+
+
 ##  Order status
 ```ruby
 
@@ -926,6 +1084,126 @@ Name           |Required| Example    | Description
 ---------------|---- |---------------|-------
 id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
 timestamp      | Yes |1524211224     | When was the request generated
+
+
+##  Multiple order status
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"]
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/orders/status_multiple"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+body = {
+  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"]
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/orders/status_multiple",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+```
+
+> Response:
+
+```json 
+[
+  {  
+    "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+    "market":"TRXETH",
+    "order_type":"limit_order",
+    "side":"buy",
+    "status":"open",
+    "fee_amount":0.0000008,
+    "fee":0.1,
+    "total_quantity":2,
+    "remaining_quantity":2.0,
+    "avg_price":0.0,
+    "price_per_unit":0.00001567,
+    "created_at":"2018-04-19T18:17:28.022Z",
+    "updated_at":"2018-04-19T18:17:28.022Z"
+  }
+]
+```
+
+
+Use this endpoint to fetch status of any order
+
+### HTTP Request
+
+`POST /exchange/v1/orders/status_multiple`
+
+### Parameters
+
+Name           |Required| Example    | Description
+---------------|------- |---------------|-------
+ids            | Yes    |["id1", "id3"] | Array of order IDs
+
+
 
 ##  Active orders
 ```ruby
@@ -1384,6 +1662,108 @@ Sending side param is optional. You may cancel all the sell orders of SNTBTC by 
 Or you may cancel all your orders in SNTBTC market by sending
 <br>
 <code>{market: "SNTBTC"}</code>
+
+
+##  Cancel  multiple By Ids
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp.
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"]
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/orders/cancel_by_ids"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json()
+print(data)
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = "";
+
+
+  body = {
+    ids: ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"]
+  }
+
+  const payload = new Buffer(JSON.stringify(body)).toString();
+  const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+  const options = {
+    url: baseurl + "/exchange/v1/orders/cancel_by_ids",
+    headers: {
+      'X-AUTH-APIKEY': key,
+      'X-AUTH-SIGNATURE': signature
+    },
+    json: true,
+    body: body
+  }
+
+  request.post(options, function(error, response, body) {
+    console.log(body);
+  })
+```
+
+> Response:
+
+```json 
+
+```
+
+
+Use this endpoint to cancel multiple active orders in a single API call
+
+### HTTP Request
+
+`POST /exchange/v1/orders/cancel_by_ids`
+
+### Parameters
+
+Name           |Required| Example    | Description
+---------------|------- |---------------|-------
+ids            | Yes    |["id1", "id3"] | Array of order IDs
 
 
 
