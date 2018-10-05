@@ -811,6 +811,9 @@ timestamp      | Yes |1524211224     | When was the request generated
 
 ## Create multiple orders
 
+<aside class="notice">
+Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code> 
+</aside>
 
 ```ruby
 
@@ -965,7 +968,7 @@ price_per_unit | No  | 0.082         | Price per unit (not required for market o
 side           | Yes | buy           | Specify buy or sell
 order_type     | Yes | market_order  | Order Type
 timestamp      | Yes |1524211224     | When was the request generated
-
+ecode          | Yes | I             | Exchange code
 
 ##  Order status
 ```ruby
