@@ -1082,7 +1082,11 @@ ID | The ID of the kitten to delete -->
 <td>When was the request generated</td>
 </tr>
 </tbody></table>
-<h2 id='create-multiple-orders'>Create multiple orders</h2><pre class="highlight ruby tab-ruby"><code>
+<h2 id='create-multiple-orders'>Create multiple orders</h2>
+<aside class="notice">
+Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code> 
+</aside>
+<pre class="highlight ruby tab-ruby"><code>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">import</span> <span class="nn">base64</span>
@@ -1253,6 +1257,12 @@ ID | The ID of the kitten to delete -->
 <td>Yes</td>
 <td>1524211224</td>
 <td>When was the request generated</td>
+</tr>
+<tr>
+<td>ecode</td>
+<td>Yes</td>
+<td>I</td>
+<td>Exchange code</td>
 </tr>
 </tbody></table>
 <h2 id='order-status'>Order status</h2><pre class="highlight ruby tab-ruby"><code>
