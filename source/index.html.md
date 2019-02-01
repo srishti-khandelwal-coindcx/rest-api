@@ -1875,7 +1875,295 @@ Name           |Required| Example    | Description
 id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
 timestamp      | Yes |1524211224     | When was the request generated
 
+
+
+
+
+
+
+
+
+<!-- ------------------- START Sockets ---------------------- -->
+
+# Sockets
+<aside class="notice">Sockets are now only available for INR market</aside>
+
+## PUBLIC SOCKET
+
+<h3>How to connect to public socket</h3>
+
+```javascript
+import io from 'socket.io-client';
+
+const socketEndpoint = "socketEndpoint";
+
+const socket = io(socketEndpoint, {
+  transports: ['websocket']
+});
+
+
+socket.emit('join', {
+  'channelName': "channelName",
+});
+
+socket.on("eventName", (response) => {
+if (response.event == eventName) {
+  console.log(response.data);
+}
+});
+
+socket.emit('leave', {
+  'channelName': channel
+});
+```
+
+
+## Order books socket
+event: order-books
+
+### Definitions
+<ul>
+  <li>a stand for asks</li>
+  <li>b stand for bids</li>
+</ul>
+
+
+```javascript
+socket.on("order-books", (response) => {
+  if (response.event == "order-books") {
+    console.log(response.a); //asks
+    console.log(response.b); //bids
+  }
+});
+```
+
+> Order book response:
+
+```json
+{
+  "a": [["251005.00000000", 0.019]],
+  "b": [["251009.00000000", 0.029]]
+}
+```
+> a is asks
+> b is bids
+
+## Trades socket
+event: symbol-trades (XRPBTC-trades)
+
+### Definitions
+<ul>
+  <li>m stands for whether the buyer is market maker or not</li>
+  <li>p is the trade price</li>
+  <li>q is the quantity</li>
+  <li>T is the timestamp of trade</li>
+  <li>s is the symbol(currency)</li>
+</ul>
+
+```javascript
+socket.on("XRPBTC-trades", (response) => {
+  if (response.event == "XRPBTC-trades") {
+    console.log(response);
+  }
+});
+```
+
+> Trade response:
+
+```json
+{
+  "T": 1545896665076.92,
+  "p": 0.9634e-4,
+  "q": 0.1e1,
+  "s": "XRPBTC",
+  "m": true
+}
+```
+
+## ACCOUNT SOCKET
+
+<h3>How to connect to account socket</h3>
+
+You can get your API key and Secret as follows
+<ul>
+  <li>Go to your CoinDCX profile section</li>
+  <li>Click `Access API dashboard`</li>
+  <li>Click Create API key button and follow the process of verifications</li>
+</ul>
+
+```javascript
+
+import io from 'socket.io-client';
+const socketEndpoint = "socketEndpoint";
+
+//connect to server.
+const socket = io(socketEndpoint, {
+  transports: ['websocket']
+});
+
+const secret = "secret";
+const key = "key";
+
+
+const body = {channel:"coindcx"};
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+
+// connect to the channel you want to listen to:
+socket.emit('join', {
+  'channelName': "coindcx",
+  'authSignature': signature,
+  'apiKey' : key
+});
+
+
+// listen to "event"  of channel :
+socket.on("eventName", (response) => {
+  if (response.event == eventName) {
+    console.log(response.data);
+  }
+});
+
+// in order to leave a channel :
+socket.emit('leave', {
+  'channelName': channel
+});
+```
+
+## Balance updates socket
+event: balance-update
+
+### Definitions
+<ul>
+  <li>balance is the usable balance</li>
+  <li>Locked balance is the balance currently being used by an open order</li>
+  <li>currency is the currency like LTC, BTC etc.</li>
+</ul>
+
+```javascript
+socket.on("balance-update", (response) => {
+  if (response.event == "balance-update") {
+    console.log(response);
+  }
+});
+```
+
+> Balance update response:
+
+```json
+{
+  "balance": "1000.00000000",
+  "locked_balance": "1.00000000",
+  "currency": "XRP"
+}
+```
+> balance is usable balance
+> Locked balance is the balance currently being used by an open order
+> currency is the currency like LTC, BTC etc.
+
+
+
+## Order updates sockets
+event: order-update
+
+### Definitions
+<ul>
+  <li>id is client order id/system generated order id</li>
+  <li>order_type is the order type like market_order, limit_order and so on</li>
+  <li>side is order side like sell/buy</li>
+  <li>status is order status like filled, partially_filled, cancelled and so on</li>
+  <li>fee_amount is the fee amount</li>
+  <li>fee is the percentage fee</li>
+  <li>total_quantity is the quantity of order</li>
+  <li>remaining_quantity is the remaining quantity of order</li>
+  <li>avg_price is the price (based on trades price)</li>
+  <li>price_per_unit is the price on which order was placed</li>
+  <li>market is the market like XRPBTC and so on</li>
+  <li>created_at is the timestamp on which order was created</li>
+  <li>updated_at is the timestamp on which order was updated</li>
+</ul>
+
+```javascript
+socket.on("order-update", (response) => {
+  if (response.event == "order-update" && !undefined(response.orders)) {
+    console.log(response.orders);
+  }
+});
+```
+
+> Order execution response:
+
+```json
+{
+  "orders": [{
+  "id": "fed5bcd0-8984-11e8-8c1a-5bcd9355788c",
+  "order_type": "market_order",
+  "side": "sell",
+  "status": "filled",
+  "fee_amount": 0.0,
+  "fee": 0.0,
+  "total_quantity": 0.1e1,
+  "remaining_quantity": 0.1e1,
+  "avg_price": 0.0,
+  "price_per_unit": 0.0,
+  "stop_price": null,
+  "market": "XRPBTC",
+  "created_at": 4123423412423,
+  "updated_at": 4123423412423
+  }]
+}
+```
+
+## Trade updates sockets
+event: order-update
+
+### Definitions
+<ul>
+  <li>o is client order id / system generated order id</li>
+  <li>t is trade id</li>
+  <li>s is symbol/market (LTCBTC)</li>
+  <li>p is price</li>
+  <li>q is quantity</li>
+  <li>T is timestamp</li>
+  <li>m stands for whether the buyer is market maker or not.</li>
+  <li>f is fee amount</li>
+  <li>e is exchange identifier</li>
+  <li>x is status</li>
+</ul>
+
+
+```javascript
+socket.on("order-update", (response) => {
+  if (response.event == "order-update" && !undefined(response.trades)) {
+    console.log(response.trades);
+  }
+});
+```
+
+
+> Trade execution response:
+
+```json
+{
+"trades":[{
+    "o": "28c58ee8-09ab-11e9-9c6b-8f2ae34ea8b0",
+    "t": "17105",
+    "s": "XRPBTC",
+    "p": "0.00009634",
+    "q": "1.0",
+    "T": 1545896665076.92,
+    "m": true,
+    "f": "0.000000009634",
+    "e": "I",
+    "x": "filled"
+  }]
+}
+```
+<!-- ------------------- END Sockets ---------------------- -->
+
+
+
 # API call limits
 We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
 In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second.
-
