@@ -555,6 +555,114 @@ This endpoint retrieves account's balances.
 
 `POST /exchange/v1/users/balances`
 
+<!--######################## START user info ######################## -->
+## Get user info
+
+```ruby
+
+```
+
+```python
+import hmac
+import hashlib
+import base64
+import json
+import time
+import requests
+
+# Enter your API Key and Secret here. If you don't have one, you can generate it from the website.
+key = ""
+secret = ""
+
+# Generating a timestamp
+timeStamp = int(round(time.time() * 1000))
+
+body = {
+  "timestamp": timeStamp
+}
+
+json_body = json.dumps(body, separators = (',', ':'))
+
+signature = hmac.new(secret, json_body, hashlib.sha256).hexdigest()
+
+url = "https://api.coindcx.com/exchange/v1/users/info"
+
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+}
+
+response = requests.post(url, data = json_body, headers = headers)
+data = response.json();
+print(data);
+```
+
+```shell
+
+```
+
+```javascript
+const request = require('request')
+const crypto = require('crypto')
+
+var baseurl = "https://api.coindcx.com"
+
+var timeStamp = Math.floor(Date.now());
+// To check if the timestamp is correct
+console.log(timeStamp);
+
+// Place your API key and secret below. You can generate it from the website.
+key = "";
+secret = ""
+
+
+body = {
+  "timestamp": timeStamp
+}
+
+const payload = new Buffer(JSON.stringify(body)).toString();
+const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
+
+const options = {
+  url: baseurl + "/exchange/v1/users/info",
+  headers: {
+    'X-AUTH-APIKEY': key,
+    'X-AUTH-SIGNATURE': signature
+  },
+  json: true,
+  body: body
+}
+
+request.post(options, function(error, response, body) {
+  console.log(body);
+})
+```
+
+> Response:
+
+```json
+[
+  {
+    "coindcx_id": "fda259ce-22fc-11e9-ba72-ef9b29b5db2b",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "mobile_number": "000000000",
+    "email": "test@coindcx.com"
+  }
+]
+```
+> coindcx_id is the user id
+
+This endpoint retrieves user info.
+
+### HTTP Request
+
+`POST /exchange/v1/users/info`
+
+<!--######################## END user info ######################## -->
+
+
 <!-- ### Query Parameters -->
 
 <!-- <aside class="success">
@@ -1886,30 +1994,32 @@ timestamp      | Yes |1524211224     | When was the request generated
 <!-- ------------------- START Sockets ---------------------- -->
 
 # Sockets
-<aside class="notice">Sockets are now only available for INR market</aside>
+<aside class="notice">Sockets are currently available only for the INR market.</aside>
 
 ## PUBLIC SOCKET
 
-<h3>How to connect to public socket</h3>
+<h3>To connect to public socket</h3>
+
+Refer to the right panel.
 
 ```javascript
 import io from 'socket.io-client';
 
-const socketEndpoint = "socketEndpoint";
+const socketEndpoint = "wss://stream.coindcx.com:4200";
 
 const socket = io(socketEndpoint, {
   transports: ['websocket']
 });
 
 
+//Join Channel
 socket.emit('join', {
   'channelName': "channelName",
 });
 
-socket.on("eventName", (response) => {
-if (response.event == eventName) {
+//Listen update on eventName
+socket.on('eventName', (response) => {
   console.log(response.data);
-}
 });
 
 socket.emit('leave', {
@@ -1917,11 +2027,16 @@ socket.emit('leave', {
 });
 ```
 
-
 ## Order books socket
-event: order-books
 
 ### Definitions
+<ul>
+  <li><strong>Channel:</strong> SYMBOL-trades (ex- XRPBTC-trades)</li>
+  <li><strong>Event:</strong> depth-update</li>
+</ul>
+
+
+### Response
 <ul>
   <li>a stand for asks</li>
   <li>b stand for bids</li>
@@ -1929,11 +2044,9 @@ event: order-books
 
 
 ```javascript
-socket.on("order-books", (response) => {
-  if (response.event == "order-books") {
-    console.log(response.a); //asks
-    console.log(response.b); //bids
-  }
+socket.on("depth-update", (response) => {
+  console.log(response.data.a); //asks
+  console.log(response.data.b); //bids
 });
 ```
 
@@ -1945,13 +2058,17 @@ socket.on("order-books", (response) => {
   "b": [["251009.00000000", 0.029]]
 }
 ```
-> a is asks
-> b is bids
 
 ## Trades socket
-event: symbol-trades (XRPBTC-trades)
 
 ### Definitions
+<ul>
+  <li><strong>Channel:</strong> SYMBOL-trades (ex- XRPBTC-trades)</li>
+  <li><strong>Event:</strong> new-trade</li>
+</ul>
+
+
+### Response
 <ul>
   <li>m stands for whether the buyer is market maker or not</li>
   <li>p is the trade price</li>
@@ -1961,10 +2078,8 @@ event: symbol-trades (XRPBTC-trades)
 </ul>
 
 ```javascript
-socket.on("XRPBTC-trades", (response) => {
-  if (response.event == "XRPBTC-trades") {
-    console.log(response);
-  }
+socket.on("new-trade", (response) => {
+  console.log(response.data);
 });
 ```
 
@@ -1982,19 +2097,21 @@ socket.on("XRPBTC-trades", (response) => {
 
 ## ACCOUNT SOCKET
 
-<h3>How to connect to account socket</h3>
+<h3>To connect to the account socket</h3>
 
-You can get your API key and Secret as follows
+Get your API key and Secret by simply following these steps:
 <ul>
-  <li>Go to your CoinDCX profile section</li>
-  <li>Click `Access API dashboard`</li>
-  <li>Click Create API key button and follow the process of verifications</li>
+  <li>Go to the profile section on CoinDCX</li>
+  <li>Click on `Access API dashboard`</li>
+  <li>Click on `Create API key` and follow the process of verification</li>
 </ul>
+
+Refer to the right panel.
 
 ```javascript
 
 import io from 'socket.io-client';
-const socketEndpoint = "socketEndpoint";
+const socketEndpoint = "wss://stream.coindcx.com:4200";
 
 //connect to server.
 const socket = io(socketEndpoint, {
@@ -2009,8 +2126,7 @@ const body = {channel:"coindcx"};
 const payload = new Buffer(JSON.stringify(body)).toString();
 const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
 
-
-// connect to the channel you want to listen to:
+//Join channel
 socket.emit('join', {
   'channelName': "coindcx",
   'authSignature': signature,
@@ -2018,23 +2134,28 @@ socket.emit('join', {
 });
 
 
-// listen to "event"  of channel :
+//Listen update on eventName
 socket.on("eventName", (response) => {
-  if (response.event == eventName) {
-    console.log(response.data);
-  }
+  console.log(response.data);
 });
 
-// in order to leave a channel :
+
+// In order to leave a channel
 socket.emit('leave', {
-  'channelName': channel
+  'channelName': 'coindcx'
 });
 ```
 
 ## Balance updates socket
-event: balance-update
 
 ### Definitions
+<ul>
+  <li><strong>Channel:</strong> coindcx</li>
+  <li><strong>Event:</strong> balance-update</li>
+</ul>
+
+
+### Response
 <ul>
   <li>balance is the usable balance</li>
   <li>Locked balance is the balance currently being used by an open order</li>
@@ -2058,16 +2179,44 @@ socket.on("balance-update", (response) => {
   "currency": "XRP"
 }
 ```
-> balance is usable balance
-> Locked balance is the balance currently being used by an open order
-> currency is the currency like LTC, BTC etc.
-
 
 
 ## Order updates sockets
-event: order-update
 
 ### Definitions
+<ul>
+  <li><strong>Channel:</strong> coindcx</li>
+  <li><strong>Event:</strong> order-update</li>
+</ul>
+
+```javascript
+socket.on("order-update", (response) => {
+  console.log(response.data);
+});
+```
+
+> Order update response:
+
+```json
+[{
+  "id": "fed5bcd0-8984-11e8-8c1a-5bcd9355788c",
+  "order_type": "market_order",
+  "side": "sell",
+  "status": "filled",
+  "fee_amount": 0.0,
+  "fee": 0.0,
+  "total_quantity": 0.1e1,
+  "remaining_quantity": 0.1e1,
+  "avg_price": 0.0,
+  "price_per_unit": 0.0,
+  "stop_price": null,
+  "market": "XRPBTC",
+  "created_at": 4123423412423,
+  "updated_at": 4123423412423
+}]
+```
+
+### Response
 <ul>
   <li>id is client order id/system generated order id</li>
   <li>order_type is the order type like market_order, limit_order and so on</li>
@@ -2084,41 +2233,16 @@ event: order-update
   <li>updated_at is the timestamp on which order was updated</li>
 </ul>
 
-```javascript
-socket.on("order-update", (response) => {
-  if (response.event == "order-update" && !undefined(response.orders)) {
-    console.log(response.orders);
-  }
-});
-```
-
-> Order execution response:
-
-```json
-{
-  "orders": [{
-  "id": "fed5bcd0-8984-11e8-8c1a-5bcd9355788c",
-  "order_type": "market_order",
-  "side": "sell",
-  "status": "filled",
-  "fee_amount": 0.0,
-  "fee": 0.0,
-  "total_quantity": 0.1e1,
-  "remaining_quantity": 0.1e1,
-  "avg_price": 0.0,
-  "price_per_unit": 0.0,
-  "stop_price": null,
-  "market": "XRPBTC",
-  "created_at": 4123423412423,
-  "updated_at": 4123423412423
-  }]
-}
-```
 
 ## Trade updates sockets
-event: order-update
 
 ### Definitions
+<ul>
+  <li><strong>Channel:</strong> coindcx</li>
+  <li><strong>Event:</strong> trade-update</li>
+</ul>
+
+### Response
 <ul>
   <li>o is client order id / system generated order id</li>
   <li>t is trade id</li>
@@ -2134,31 +2258,27 @@ event: order-update
 
 
 ```javascript
-socket.on("order-update", (response) => {
-  if (response.event == "order-update" && !undefined(response.trades)) {
-    console.log(response.trades);
-  }
+socket.on("trade-update", (response) => {
+  console.log(response.data);
 });
 ```
 
 
-> Trade execution response:
+> Trade update response:
 
 ```json
-{
-"trades":[{
-    "o": "28c58ee8-09ab-11e9-9c6b-8f2ae34ea8b0",
-    "t": "17105",
-    "s": "XRPBTC",
-    "p": "0.00009634",
-    "q": "1.0",
-    "T": 1545896665076.92,
-    "m": true,
-    "f": "0.000000009634",
-    "e": "I",
-    "x": "filled"
-  }]
-}
+[{
+  "o": "28c58ee8-09ab-11e9-9c6b-8f2ae34ea8b0",
+  "t": "17105",
+  "s": "XRPBTC",
+  "p": "0.00009634",
+  "q": "1.0",
+  "T": 1545896665076.92,
+  "m": true,
+  "f": "0.000000009634",
+  "e": "I",
+  "x": "filled"
+}]
 ```
 <!-- ------------------- END Sockets ---------------------- -->
 
