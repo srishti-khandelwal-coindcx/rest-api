@@ -1996,7 +1996,7 @@ timestamp      | Yes |1524211224     | When was the request generated
 # Sockets
 <aside class="notice">Sockets are currently available only for the INR market.</aside>
 
-## PUBLIC SOCKET
+## PUBLIC
 
 <h3>To connect to public socket</h3>
 
@@ -2027,7 +2027,7 @@ socket.emit('leave', {
 });
 ```
 
-## Order books socket
+## Order book
 
 ### Definitions
 <ul>
@@ -2059,7 +2059,7 @@ socket.on("depth-update", (response) => {
 }
 ```
 
-## Trades socket
+## Trades
 
 ### Definitions
 <ul>
@@ -2095,7 +2095,7 @@ socket.on("new-trade", (response) => {
 }
 ```
 
-## ACCOUNT SOCKET
+## ACCOUNT
 
 <h3>To connect to the account socket</h3>
 
@@ -2146,7 +2146,7 @@ socket.emit('leave', {
 });
 ```
 
-## Balance updates socket
+## Balances
 
 ### Definitions
 <ul>
@@ -2180,61 +2180,7 @@ socket.on("balance-update", (response) => {
 }
 ```
 
-<!---->
-<!--## Order updates sockets-->
-<!---->
-<!--### Definitions-->
-<!--<ul>-->
-<!--  <li><strong>Channel:</strong> coindcx</li>-->
-<!--  <li><strong>Event:</strong> order-update</li>-->
-<!--</ul>-->
-<!---->
-<!--```javascript-->
-<!--socket.on("order-update", (response) => {-->
-<!--  console.log(response.data);-->
-<!--});-->
-<!--```-->
-<!---->
-<!--> Order update response:-->
-<!---->
-<!--```json-->
-<!--[{-->
-<!--  "id": "fed5bcd0-8984-11e8-8c1a-5bcd9355788c",-->
-<!--  "order_type": "market_order",-->
-<!--  "side": "sell",-->
-<!--  "status": "filled",-->
-<!--  "fee_amount": 0.0,-->
-<!--  "fee": 0.0,-->
-<!--  "total_quantity": 0.1e1,-->
-<!--  "remaining_quantity": 0.1e1,-->
-<!--  "avg_price": 0.0,-->
-<!--  "price_per_unit": 0.0,-->
-<!--  "stop_price": null,-->
-<!--  "market": "XRPBTC",-->
-<!--  "created_at": 4123423412423,-->
-<!--  "updated_at": 4123423412423-->
-<!--}]-->
-<!--```-->
-<!---->
-<!--### Response-->
-<!--<ul>-->
-<!--  <li>id is client order id/system generated order id</li>-->
-<!--  <li>order_type is the order type like market_order, limit_order and so on</li>-->
-<!--  <li>side is order side like sell/buy</li>-->
-<!--  <li>status is order status like filled, partially_filled, cancelled and so on</li>-->
-<!--  <li>fee_amount is the fee amount</li>-->
-<!--  <li>fee is the percentage fee</li>-->
-<!--  <li>total_quantity is the quantity of order</li>-->
-<!--  <li>remaining_quantity is the remaining quantity of order</li>-->
-<!--  <li>avg_price is the price (based on trades price)</li>-->
-<!--  <li>price_per_unit is the price on which order was placed</li>-->
-<!--  <li>market is the market like XRPBTC and so on</li>-->
-<!--  <li>created_at is the timestamp on which order was created</li>-->
-<!--  <li>updated_at is the timestamp on which order was updated</li>-->
-<!--</ul>-->
-
-
-## Trade updates sockets
+## Trades
 
 ### Definitions
 <ul>
@@ -2265,53 +2211,6 @@ socket.on("trade-update", (response) => {
 
 
 > Trade update response:
-
-```json
-[{
-  "o": "28c58ee8-09ab-11e9-9c6b-8f2ae34ea8b0",
-  "t": "17105",
-  "s": "XRPBTC",
-  "p": "0.00009634",
-  "q": "1.0",
-  "T": 1545896665076.92,
-  "m": true,
-  "f": "0.000000009634",
-  "e": "I",
-  "x": "filled"
-}]
-```
-
-## Bracket-Order Trade updates sockets
-
-### Definitions
-<ul>
-  <li><strong>Channel:</strong> coindcx</li>
-  <li><strong>Event:</strong> bo-trade-update</li>
-</ul>
-
-### Response
-<ul>
-  <li>o is client order id / system generated order id</li>
-  <li>t is trade id</li>
-  <li>s is symbol/market (LTCBTC)</li>
-  <li>p is price</li>
-  <li>q is quantity</li>
-  <li>T is timestamp</li>
-  <li>m stands for whether the buyer is market maker or not.</li>
-  <li>f is fee amount</li>
-  <li>e is exchange identifier</li>
-  <li>x is status</li>
-</ul>
-
-
-```javascript
-socket.on("bo-trade-update", (response) => {
-  console.log(response.data);
-});
-```
-
-
-> Bracket Order Trade update response:
 
 ```json
 [{
