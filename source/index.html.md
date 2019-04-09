@@ -2002,6 +2002,25 @@ timestamp      | Yes |1524211224     | When was the request generated
 
 Refer to the right panel.
 
+```python
+import socketio
+
+socketEndpoint = 'wss://stream.coindcx.com'
+sio = socketio.Client()
+
+sio.connect(socketEndpoint, transports = 'websocket')
+sio.emit('join', { 'channelName': 'channelName' })
+
+# Listen update on channelName
+@sio.on('channelName')
+def on_message(response):
+    print(response.data)
+
+# leave a channel
+sio.emit('leave', { 'channelName' : channelName })
+
+```
+
 ```javascript
 import io from 'socket.io-client';
 
@@ -2017,13 +2036,14 @@ socket.emit('join', {
   'channelName': "channelName",
 });
 
-//Listen update on eventName
-socket.on('eventName', (response) => {
+//Listen update on channelName
+socket.on('channelName', (response) => {
   console.log(response.data);
 });
 
+// leave a channel
 socket.emit('leave', {
-  'channelName': channel
+  'channelName': channelName
 });
 ```
 
