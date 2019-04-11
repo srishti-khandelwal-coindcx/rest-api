@@ -151,18 +151,26 @@ print(data)
 ```json
 [
   {
-    "coindcx_name":               "SNTBTC",
-    "base_currency_short_name":   "BTC",
-    "target_currency_short_name": "SNT",
-    "target_currency_name":       "Status",
-    "base_currency_name":         "Bitcoin",
-    "min_quantity":               1,
-    "max_quantity":               1000000,
-    "min_notional":               0.001,
-    "base_currency_precision":    8,
-    "target_currency_precision":  0,
-    "step":                       1,
-    "order_types":                ["market_order", "limit_order"]
+    "coindcx_name": "SNMBTC",
+    "base_currency_short_name": "BTC",
+    "target_currency_short_name": "SNM",
+    "target_currency_name": "Sonm",
+    "base_currency_name": "Bitcoin",
+    "min_quantity": 1,
+    "max_quantity": 90000000,
+    "min_price": 5.66e-7,
+    "max_price": 0.0000566,
+    "min_notional": 0.001,
+    "base_currency_precision": 8,
+    "target_currency_precision": 0,
+    "step": 1,
+    "order_types": [ "take_profit", "stop_limit", "market_order", "limit_order" ],
+    "symbol": "SNMBTC",
+    "ecode": "B",
+    "max_leverage": 3,
+    "max_leverage_short": null,
+    "pair": "B-SNM_BTC",
+    "status": "active"
   }
 ]
 ```
@@ -175,7 +183,9 @@ print(data)
   <li>min_notional - It is the minimum amount of base currency (BTC) for which an order may be placed</li>
   <li>base_currency_precision - Number of decimals accepted for the base currency</li>
   <li>target_currency_precision - Number of decimals accepted for the target currency</li>
-  <li>step - It is the minimum increament accepted for the target currency</li>
+  <li>step - It is the minimum increment accepted for the target currency</li>
+  <li>ecode - (Exchange code) It is the unique identifier for exchanges available on CoinDCX. For example: B(Binance), HB(HITBTC)  </li>
+  <li>pair - It is a string created by (ecode, target_currency_short_name, base_currency_short_name). It can be used to connect to DcxStreams socket for API trading.</li>
 </ul>
 
 
@@ -2037,7 +2047,7 @@ socket.emit('join', {
 });
 
 //Listen update on channelName
-socket.on('channelName', (response) => {
+socket.on('eventName', (response) => {
   console.log(response.data);
 });
 
@@ -2051,7 +2061,7 @@ socket.emit('leave', {
 
 ### Definitions
 <ul>
-  <li><strong>Channel:</strong> SYMBOL-trades (ex- XRPBTC-trades)</li>
+  <li><strong>Channel:</strong> E_code-target_currency_short_name_base_currency_short_name (ex- I-BTC_INR)</li>
   <li><strong>Event:</strong> depth-update</li>
 </ul>
 
