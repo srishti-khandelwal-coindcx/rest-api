@@ -2061,8 +2061,8 @@ socket.emit('leave', {
 
 ### Definitions
 <ul>
-  <li><strong>Channel:</strong> E_code-target_currency_short_name_base_currency_short_name (ex- I-BTC_INR)</li>
-  <li><strong>Event:</strong> depth-update</li>
+  <li><strong>Channel: </strong>'pair' from Markets details API response.</li>
+  <li><strong>Event: </strong>depth-update</li>
 </ul>
 
 
@@ -2099,8 +2099,8 @@ socket.on("depth-update", (response) => {
 
 ### Definitions
 <ul>
-  <li><strong>Channel:</strong> SYMBOL-trades (ex- XRPBTC-trades)</li>
-  <li><strong>Event:</strong> new-trade</li>
+  <li><strong>Channel: </strong>'pair' from Markets details API response. </li>
+  <li><strong>Event: </strong>new-trade</li>
 </ul>
 
 
