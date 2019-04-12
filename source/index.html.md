@@ -2155,7 +2155,7 @@ Refer to the right panel.
 import socketio
 import hmac
 import hashlib
-
+import json
 socketEndpoint = 'wss://stream.coindcx.com'
 sio = socketio.Client()
 
@@ -2164,8 +2164,9 @@ sio.connect(socketEndpoint, transports = 'websocket')
 secret = 'secret'
 key = 'key'
 
-body='{"channel":"coindcx"}'
-signature=hmac.new(secret, body, digestmod=hashlib.sha256).hexdigest()
+body={"channel":"coindcx"}
+json_body=json.dumps(body, separators = (',', ':'))
+signature=hmac.new(secret, json_body, digestmod=hashlib.sha256).hexdigest()
 
 # Join channel
 sio.emit('join', { 'channelName': 'coindcx', 'authSignature': signature, 'apiKey' : key })
