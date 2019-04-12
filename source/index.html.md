@@ -2061,7 +2061,7 @@ socket.emit('leave', {
 
 ### Definitions
 <ul>
-  <li><strong>Channel: </strong>'pair' from Markets details API response.</li>
+  <li><strong>Channel: </strong>use 'pair' from Markets details API response.</li>
   <li><strong>Event: </strong>depth-update</li>
 </ul>
 
@@ -2099,7 +2099,7 @@ socket.on("depth-update", (response) => {
 
 ### Definitions
 <ul>
-  <li><strong>Channel: </strong>'pair' from Markets details API response. </li>
+  <li><strong>Channel: </strong>use 'pair' from Markets details API response. </li>
   <li><strong>Event: </strong>new-trade</li>
 </ul>
 
