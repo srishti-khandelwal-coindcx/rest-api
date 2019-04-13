@@ -151,18 +151,26 @@ print(data)
 ```json
 [
   {
-    "coindcx_name":               "SNTBTC",
-    "base_currency_short_name":   "BTC",
-    "target_currency_short_name": "SNT",
-    "target_currency_name":       "Status",
-    "base_currency_name":         "Bitcoin",
-    "min_quantity":               1,
-    "max_quantity":               1000000,
-    "min_notional":               0.001,
-    "base_currency_precision":    8,
-    "target_currency_precision":  0,
-    "step":                       1,
-    "order_types":                ["market_order", "limit_order"]
+    "coindcx_name": "SNMBTC",
+    "base_currency_short_name": "BTC",
+    "target_currency_short_name": "SNM",
+    "target_currency_name": "Sonm",
+    "base_currency_name": "Bitcoin",
+    "min_quantity": 1,
+    "max_quantity": 90000000,
+    "min_price": 5.66e-7,
+    "max_price": 0.0000566,
+    "min_notional": 0.001,
+    "base_currency_precision": 8,
+    "target_currency_precision": 0,
+    "step": 1,
+    "order_types": [ "take_profit", "stop_limit", "market_order", "limit_order" ],
+    "symbol": "SNMBTC",
+    "ecode": "B",
+    "max_leverage": 3,
+    "max_leverage_short": null,
+    "pair": "B-SNM_BTC",
+    "status": "active"
   }
 ]
 ```
@@ -175,7 +183,9 @@ print(data)
   <li>min_notional - It is the minimum amount of base currency (BTC) for which an order may be placed</li>
   <li>base_currency_precision - Number of decimals accepted for the base currency</li>
   <li>target_currency_precision - Number of decimals accepted for the target currency</li>
-  <li>step - It is the minimum increament accepted for the target currency</li>
+  <li>step - It is the minimum increment accepted for the target currency</li>
+  <li>ecode - (Exchange code) It is the unique identifier for exchanges available on CoinDCX. For example: B(Binance), HB(HITBTC)  </li>
+  <li>pair - It is a string created by (ecode, target_currency_short_name, base_currency_short_name). It can be used to connect to DcxStreams socket for API trading.</li>
 </ul>
 
 
@@ -217,9 +227,9 @@ request.get(baseurl + "/exchange/v1/trades/SNTBTC",function(error, response, bod
 ```
 
 ### Path parameters
-Name           |Required| Example     
----------------|---- |---------------
-market         | Yes |  SNTBTC 
+| Name   | Required | Example |
+|--------|----------|---------|
+| market | Yes      | SNTBTC  |
 
 This API provides with a sorted list of most recent 50 trades.
 ### Definitions
@@ -236,9 +246,9 @@ This API provides with a sorted list of most recent 50 trades.
 `GET /exchange/v1/books/:market`
 
 ### Path parameters
-Name           |Required| Example     
----------------|---- |---------------
-market         | Yes |  SNTBTC 
+| Name   | Required | Example |
+|--------|----------|---------|
+| market | Yes      | SNTBTC  |
 
 ```javascript
 const request = require('request')
@@ -441,10 +451,10 @@ The authentication procedure is as follows:
 <br>
  <p>After this, You will have to add following headers into all the authenticated requests</p>
 
-Header Name | Value
---------- | ------- 
-X-AUTH-APIKEY| your-api-key
-X-AUTH-SIGNATURE| signature
+| Header Name      | Value        |
+|------------------|--------------|
+| X-AUTH-APIKEY    | your-api-key |
+| X-AUTH-SIGNATURE | signature    |
 
 <aside class="notice">
 You must replace <code>your-api-key</code> and <code>signature</code> with your personal API key and generated signature respectively.
@@ -719,9 +729,9 @@ This endpoint retrieves a specific kitten.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+| Parameter | Description                      |
+|-----------|----------------------------------|
+| ID        | The ID of the kitten to retrieve |
 
 ## Delete a Specific Kitten
 
@@ -769,19 +779,19 @@ This endpoint deletes a specific kitten.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete -->
+| Parameter | Description                        |
+|-----------|------------------------------------|
+| ID        | The ID of the kitten to delete --> |
 
 # Order
 Enum definitions for the purpose of order are as follows:
 
-Name      |   Values
-----------|------------
-side      |   buy, sell
-order_type|   market_order, limit_order
-timestamp |   1524211224
-ecode     |   I, B, HB
+| Name       | Values                    |
+|------------|---------------------------|
+| side       | buy, sell                 |
+| order_type | market_order, limit_order |
+| timestamp  | 1524211224                |
+| ecode      | I, B, HB                  |
 
 ## New order
 
@@ -908,14 +918,14 @@ Use this endpoint to place a new order on the exchange
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|---- |---------------|-------
-market         | Yes | SNTBTC        | The trading pair
-total_quantity | Yes | 1.101         | Quantity to trade 
-price_per_unit | No  | 0.082         | Price per unit (not required for market order)
-side           | Yes | buy           | Specify buy or sell
-order_type     | Yes | market_order  | Order Type
-timestamp      | Yes |1524211224     | When was the request generated
+| Name           | Required | Example      | Description                                    |
+|----------------|----------|--------------|------------------------------------------------|
+| market         | Yes      | SNTBTC       | The trading pair                               |
+| total_quantity | Yes      | 1.101        | Quantity to trade                              |
+| price_per_unit | No       | 0.082        | Price per unit (not required for market order) |
+| side           | Yes      | buy          | Specify buy or sell                            |
+| order_type     | Yes      | market_order | Order Type                                     |
+| timestamp      | Yes      | 1524211224   | When was the request generated                 |
 
 ## Create multiple orders
 
@@ -1068,15 +1078,15 @@ Use this endpoint to place a multiple orders on the exchange
 
 ### Parameters in an array of objects
 
-Name           |Required| Example    | Description
----------------|---- |---------------|-------
-market         | Yes | SNTBTC        | The trading pair
-total_quantity | Yes | 1.101         | Quantity to trade 
-price_per_unit | No  | 0.082         | Price per unit (not required for market order)
-side           | Yes | buy           | Specify buy or sell
-order_type     | Yes | market_order  | Order Type
-timestamp      | Yes |1524211224     | When was the request generated
-ecode          | Yes | I             | Exchange code
+| Name           | Required | Example      | Description                                    |
+|----------------|----------|--------------|------------------------------------------------|
+| market         | Yes      | SNTBTC       | The trading pair                               |
+| total_quantity | Yes      | 1.101        | Quantity to trade                              |
+| price_per_unit | No       | 0.082        | Price per unit (not required for market order) |
+| side           | Yes      | buy          | Specify buy or sell                            |
+| order_type     | Yes      | market_order | Order Type                                     |
+| timestamp      | Yes      | 1524211224   | When was the request generated                 |
+| ecode          | Yes      | I            | Exchange code                                  |
 
 ##  Order status
 ```ruby
@@ -1191,10 +1201,10 @@ Use this endpoint to fetch status of any order
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|---- |---------------|-------
-id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
-timestamp      | Yes |1524211224     | When was the request generated
+| Name      | Required | Example                              | Description                    |
+|-----------|----------|--------------------------------------|--------------------------------|
+| id        | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
+| timestamp | Yes      | 1524211224                           | When was the request generated |
 
 
 ##  Multiple order status
@@ -1310,9 +1320,9 @@ Use this endpoint to fetch status of any order
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|------- |---------------|-------
-ids            | Yes    |["id1", "id3"] | Array of order IDs
+| Name | Required | Example        | Description        |
+|------|----------|----------------|--------------------|
+| ids  | Yes      | ["id1", "id3"] | Array of order IDs |
 
 
 
@@ -1433,11 +1443,11 @@ Use this endpoint to fetch active orders
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|---- |---------------|-------
-market         | Yes  |    SNTBTC     |
-side           | No  |    buy        |
-timestamp      | Yes |1524211224     | When was the request generated
+| Name      | Required | Example    | Description                    |
+|-----------|----------|------------|--------------------------------|
+| market    | Yes      | SNTBTC     |                                |
+| side      | No       | buy        |                                |
+| timestamp | Yes      | 1524211224 | When was the request generated |
 
 ## Account Trade history
 ```ruby
@@ -1543,10 +1553,10 @@ Use this endpoint to fetch trades associated with your account
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|---- |---------------|-------
-limit          | No  |    100        | Default 500
-from_id        | No  |    28473      | Trade ID after which you want the data. If not supplied, latest trades would be given
+| Name    | Required | Example | Description                                                                           |
+|---------|----------|---------|---------------------------------------------------------------------------------------|
+| limit   | No       | 100     | Default 500                                                                           |
+| from_id | No       | 28473   | Trade ID after which you want the data. If not supplied, latest trades would be given |
 
 
 
@@ -1651,11 +1661,11 @@ Use this endpoint to fetch active orders count
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|---- |---------------|-------
-market         | Yes  |    SNTBTC     |
-side           | No  |    buy        |
-timestamp      | Yes |1524211224     | When was the request generated
+| Name      | Required | Example    | Description                    |
+|-----------|----------|------------|--------------------------------|
+| market    | Yes      | SNTBTC     |                                |
+| side      | No       | buy        |                                |
+| timestamp | Yes      | 1524211224 | When was the request generated |
 
 
 ##  Cancel all
@@ -1759,11 +1769,11 @@ Use this endpoint to cancel multiple active orders in a single API call
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|---- |---------------|-------
-market         | Yes  |    SNTBTC     |
-side           | No  |    buy        |
-timestamp      | Yes |1524211224     | When was the request generated
+| Name      | Required | Example    | Description                    |
+|-----------|----------|------------|--------------------------------|
+| market    | Yes      | SNTBTC     |                                |
+| side      | No       | buy        |                                |
+| timestamp | Yes      | 1524211224 | When was the request generated |
 
 Sending side param is optional. You may cancel all the sell orders of SNTBTC by sending
 <br>
@@ -1872,9 +1882,9 @@ Use this endpoint to cancel multiple active orders in a single API call
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|------- |---------------|-------
-ids            | Yes    |["id1", "id3"] | Array of order IDs
+| Name | Required | Example        | Description        |
+|------|----------|----------------|--------------------|
+| ids  | Yes      | ["id1", "id3"] | Array of order IDs |
 
 
 
@@ -1978,10 +1988,10 @@ Use this endpoint to cancel an active orders
 
 ### Parameters
 
-Name           |Required| Example    | Description
----------------|---- |---------------|-------
-id             | Yes |  ead19992-43fd-11e8-b027-bb815bcb14ed       | The ID of the order
-timestamp      | Yes |1524211224     | When was the request generated
+| Name      | Required | Example                              | Description                    |
+|-----------|----------|--------------------------------------|--------------------------------|
+| id        | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
+| timestamp | Yes      | 1524211224                           | When was the request generated |
 
 
 
@@ -1996,16 +2006,35 @@ timestamp      | Yes |1524211224     | When was the request generated
 # Sockets
 <aside class="notice">Sockets are currently available only for the INR market.</aside>
 
-## PUBLIC SOCKET
+## PUBLIC
 
 <h3>To connect to public socket</h3>
 
 Refer to the right panel.
 
+```python
+import socketio
+
+socketEndpoint = 'wss://stream.coindcx.com'
+sio = socketio.Client()
+
+sio.connect(socketEndpoint, transports = 'websocket')
+sio.emit('join', { 'channelName': 'channelName' })
+
+# Listen update on channelName
+@sio.on('channelName')
+def on_message(response):
+    print(response.data)
+
+# leave a channel
+sio.emit('leave', { 'channelName' : channelName })
+
+```
+
 ```javascript
 import io from 'socket.io-client';
 
-const socketEndpoint = "wss://stream.coindcx.com:4200";
+const socketEndpoint = "wss://stream.coindcx.com";
 
 const socket = io(socketEndpoint, {
   transports: ['websocket']
@@ -2017,22 +2046,23 @@ socket.emit('join', {
   'channelName': "channelName",
 });
 
-//Listen update on eventName
+//Listen update on channelName
 socket.on('eventName', (response) => {
   console.log(response.data);
 });
 
+// leave a channel
 socket.emit('leave', {
-  'channelName': channel
+  'channelName': channelName
 });
 ```
 
-## Order books socket
+## Order book
 
 ### Definitions
 <ul>
-  <li><strong>Channel:</strong> SYMBOL-trades (ex- XRPBTC-trades)</li>
-  <li><strong>Event:</strong> depth-update</li>
+  <li><strong>Channel: </strong>use 'pair' from Markets details API response(Example: B-SNM_BTC,B-XRP_ETH, HB-SWM_BTC).</li>
+  <li><strong>Event: </strong>depth-update</li>
 </ul>
 
 
@@ -2042,6 +2072,12 @@ socket.emit('leave', {
   <li>b stand for bids</li>
 </ul>
 
+```python
+@sio.on('depth-update')
+def on_message(response):
+    print(response.data.a) # asks
+    print(response.data.b) # bids
+```
 
 ```javascript
 socket.on("depth-update", (response) => {
@@ -2059,12 +2095,12 @@ socket.on("depth-update", (response) => {
 }
 ```
 
-## Trades socket
+## Trades
 
 ### Definitions
 <ul>
-  <li><strong>Channel:</strong> SYMBOL-trades (ex- XRPBTC-trades)</li>
-  <li><strong>Event:</strong> new-trade</li>
+  <li><strong>Channel: </strong>use 'pair' from Markets details API response(Example: B-SNM_BTC,B-XRP_ETH, HB-SWM_BTC). </li>
+  <li><strong>Event: </strong>new-trade</li>
 </ul>
 
 
@@ -2076,6 +2112,12 @@ socket.on("depth-update", (response) => {
   <li>T is the timestamp of trade</li>
   <li>s is the symbol(currency)</li>
 </ul>
+
+```python
+@sio.on('new-trade')
+def on_message(response):
+  print(response.data)
+```
 
 ```javascript
 socket.on("new-trade", (response) => {
@@ -2095,7 +2137,7 @@ socket.on("new-trade", (response) => {
 }
 ```
 
-## ACCOUNT SOCKET
+## ACCOUNT
 
 <h3>To connect to the account socket</h3>
 
@@ -2108,10 +2150,41 @@ Get your API key and Secret by simply following these steps:
 
 Refer to the right panel.
 
+```python
+
+import socketio
+import hmac
+import hashlib
+import json
+socketEndpoint = 'wss://stream.coindcx.com'
+sio = socketio.Client()
+
+sio.connect(socketEndpoint, transports = 'websocket')
+
+secret = 'secret'
+key = 'key'
+
+body={"channel":"coindcx"}
+json_body=json.dumps(body, separators = (',', ':'))
+signature=hmac.new(secret, json_body, digestmod=hashlib.sha256).hexdigest()
+
+# Join channel
+sio.emit('join', { 'channelName': 'coindcx', 'authSignature': signature, 'apiKey' : key })
+
+# Listen update on eventName
+@sio.on('eventName')
+def on_message(response):
+    print(response.data)
+
+# leave a channel
+sio.emit('leave', { 'channelName' : 'coindcx' })
+
+```
+
 ```javascript
 
 import io from 'socket.io-client';
-const socketEndpoint = "wss://stream.coindcx.com:4200";
+const socketEndpoint = "wss://stream.coindcx.com";
 
 //connect to server.
 const socket = io(socketEndpoint, {
@@ -2122,7 +2195,7 @@ const secret = "secret";
 const key = "key";
 
 
-const body = {channel:"coindcx"};
+const body = { channel: "coindcx" };
 const payload = new Buffer(JSON.stringify(body)).toString();
 const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
 
@@ -2146,7 +2219,7 @@ socket.emit('leave', {
 });
 ```
 
-## Balance updates socket
+## Balances
 
 ### Definitions
 <ul>
@@ -2162,10 +2235,17 @@ socket.emit('leave', {
   <li>currency is the currency like LTC, BTC etc.</li>
 </ul>
 
+```python
+@sio.on('balance-update')
+def on_message(response):
+  if response.event == 'balance-update':
+    print(response.data)
+```
+
 ```javascript
 socket.on("balance-update", (response) => {
   if (response.event == "balance-update") {
-    console.log(response);
+    console.log(response.data);
   }
 });
 ```
@@ -2180,61 +2260,7 @@ socket.on("balance-update", (response) => {
 }
 ```
 
-
-## Order updates sockets
-
-### Definitions
-<ul>
-  <li><strong>Channel:</strong> coindcx</li>
-  <li><strong>Event:</strong> order-update</li>
-</ul>
-
-```javascript
-socket.on("order-update", (response) => {
-  console.log(response.data);
-});
-```
-
-> Order update response:
-
-```json
-[{
-  "id": "fed5bcd0-8984-11e8-8c1a-5bcd9355788c",
-  "order_type": "market_order",
-  "side": "sell",
-  "status": "filled",
-  "fee_amount": 0.0,
-  "fee": 0.0,
-  "total_quantity": 0.1e1,
-  "remaining_quantity": 0.1e1,
-  "avg_price": 0.0,
-  "price_per_unit": 0.0,
-  "stop_price": null,
-  "market": "XRPBTC",
-  "created_at": 4123423412423,
-  "updated_at": 4123423412423
-}]
-```
-
-### Response
-<ul>
-  <li>id is client order id/system generated order id</li>
-  <li>order_type is the order type like market_order, limit_order and so on</li>
-  <li>side is order side like sell/buy</li>
-  <li>status is order status like filled, partially_filled, cancelled and so on</li>
-  <li>fee_amount is the fee amount</li>
-  <li>fee is the percentage fee</li>
-  <li>total_quantity is the quantity of order</li>
-  <li>remaining_quantity is the remaining quantity of order</li>
-  <li>avg_price is the price (based on trades price)</li>
-  <li>price_per_unit is the price on which order was placed</li>
-  <li>market is the market like XRPBTC and so on</li>
-  <li>created_at is the timestamp on which order was created</li>
-  <li>updated_at is the timestamp on which order was updated</li>
-</ul>
-
-
-## Trade updates sockets
+## Trades
 
 ### Definitions
 <ul>
@@ -2256,6 +2282,11 @@ socket.on("order-update", (response) => {
   <li>x is status</li>
 </ul>
 
+```python
+@sio.on('trade-update')
+def on_message(response):
+    print(response.data)
+```
 
 ```javascript
 socket.on("trade-update", (response) => {
@@ -2282,8 +2313,8 @@ socket.on("trade-update", (response) => {
 ```
 <!-- ------------------- END Sockets ---------------------- -->
 
-
+<!-- 
 
 # API call limits
 We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
-In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second.
+In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second. -->
