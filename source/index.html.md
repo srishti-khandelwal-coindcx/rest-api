@@ -1894,7 +1894,7 @@ Use this endpoint to cancel an active orders
 <!-- ------------------- START Sockets ---------------------- -->
 
 # Sockets
-<aside class="notice">Sockets are currently available only for the INR market.</aside>
+<!-- <aside class="notice">Sockets are currently available only for the INR market.</aside> -->
 
 ## PUBLIC
 
