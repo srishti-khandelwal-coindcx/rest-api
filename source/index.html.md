@@ -64,6 +64,7 @@ print(data)
     "change_24_hour": "-1.621",
     "high": "0.00002799",
     "low": "0.00002626",
+    "volume": "14.10",
     "last_price": "0.00002663",
     "bid": "0.00002663",
     "ask": "0.00002669",
@@ -79,6 +80,7 @@ print(data)
   <li>ask - Highest ask offer in the orderbook</li>
   <li>high - 24 hour high</li>
   <li>low - 24 hour low</li>
+  <li>volume - Volume of the market in last 24 hours.</li>
   <li>timestamp - Time when this ticker was generated</li>
 </ul>
 
