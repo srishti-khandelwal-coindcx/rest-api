@@ -20,7 +20,7 @@ search: true
 # Introduction
 
 Welcome to the CoinDCX API!
-<aside class="notice">The base URL for the API calls is `https://api.coindcx.com`, base URL for some public endpoint is `https://public.coindcx.com` and is mentioned in description for public API. </aside>
+<aside class="notice">The base URL for the API calls is `https://api.coindcx.com`, base URL for some public endpoint is `https://public.coindcx.com`. However, it will only be used where it is exclusively mentioned in the documentation. </aside>
 
 You can get your API key and Secret as follows
 <ul>
@@ -336,7 +336,7 @@ print(data)
 |--------|----------|---------|
 | pair | Yes      | B-BTC_USDT (`pair` from Market Details API) |
 
-This API provides with a sorted list(in descending order) of bids and asks.
+This API provides with a sorted list (in descending order) of bids and asks.
 
 ###
 
@@ -395,7 +395,7 @@ print(data)
 | endTime | No      | timestamp in ms, eg: `1562855417000`  |
 | limit | No      | Default: 500; Max: 1000  |
 
-This API provides with a sorted list(in descending order according to time key) of candlestick bars for given pair. Candles are uniquely identified by their time.
+This API provides with a sorted list (in descending order according to time key) of candlestick bars for given pair. Candles are uniquely identified by their time.
 
 **Valid intervals**
 
