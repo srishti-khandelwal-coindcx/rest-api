@@ -226,6 +226,17 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
           </li>
           <li>
+            <a href="#terminology" class="toc-h1 toc-link" data-title="terminology">Terminology</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#common" class="toc-h2 toc-link" data-title="common">Common</a>
+                  </li>
+                  <li>
+                    <a href="#orders" class="toc-h2 toc-link" data-title="orders">Orders</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#public-endpoints" class="toc-h1 toc-link" data-title="public-endpoints">Public endpoints</a>
               <ul class="toc-list-h2">
                   <li>
@@ -242,6 +253,9 @@
                   </li>
                   <li>
                     <a href="#order-book" class="toc-h2 toc-link" data-title="order-book">Order book</a>
+                  </li>
+                  <li>
+                    <a href="#candles" class="toc-h2 toc-link" data-title="candles">Candles</a>
                   </li>
               </ul>
           </li>
@@ -331,7 +345,7 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the CoinDCX API!
-<aside class="notice">The base URL for all the API calls is <code>https://api.coindcx.com</code> </aside></p>
+<aside class="notice">The base URL for the API calls is <code>https://api.coindcx.com</code>, base URL for some public endpoint is <code>https://public.coindcx.com</code>. However, it will only be used where it is exclusively mentioned in the documentation. </aside></p>
 
 <p>You can get your API key and Secret as follows
 <ul>
@@ -343,6 +357,35 @@
 <blockquote>
 <p>The python version used for API samples is 2.7</p>
 </blockquote>
+<h1 id='terminology'>Terminology</h1><h3 id='common'>Common</h3>
+<ul>
+<li><code>target currency</code> refers to the asset that is the <code>quantity</code> of a symbol.</li>
+<li><code>base currency</code> refers to the asset that is the <code>price</code> of a symbol.</li>
+<li><code>pair</code> uniquely idenfies the market along with it&#39;s exchange, and is available in market details api.</li>
+<li><code>ecode</code> is used to specify the exchange for the given market. Valid values for ecode include:
+
+<ul>
+<li><code>B</code>: Binance</li>
+<li><code>I</code>: CoinDCX</li>
+<li><code>HB</code>: HitBTC</li>
+<li><code>H</code>: Huobi</li>
+<li><code>BM</code>: BitMEX</li>
+</ul></li>
+</ul>
+<h3 id='orders'>Orders</h3>
+<ul>
+<li><code>status</code>: used to denote the current status of the given order. Valid values for status include:
+
+<ul>
+<li><code>init</code>: order is just created, but not placed in the orderbook</li>
+<li><code>open</code>: order is successfully placed in the orderbook</li>
+<li><code>partially_filled</code>: order is partially filled</li>
+<li><code>filled</code>: order is completely filled</li>
+<li><code>partially_cancelled</code>: order is partially filled, but cancelled, thus inactive</li>
+<li><code>cancelled</code>: order is completely or partially cancelled</li>
+<li><code>rejected</code>: order is rejected (not placed on the exchange</li>
+</ul></li>
+</ul>
 <h1 id='public-endpoints'>Public endpoints</h1><h2 id='ticker'>Ticker</h2><h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /exchange/ticker</code></p>
 <pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
@@ -472,21 +515,23 @@
   <li>ecode - (Exchange code) It is the unique identifier for exchanges available on CoinDCX. For example: B(Binance), HB(HITBTC)  </li>
   <li>pair - It is a string created by (ecode, target_currency_short_name, base_currency_short_name). It can be used to connect to DcxStreams socket for API trading.</li>
 </ul>
-<h2 id='trades'>Trades</h2><h3 id='http-request-4'>HTTP request</h3>
-<p><code>GET /exchange/v1/trades/:market</code></p>
+<h2 id='trades'>Trades</h2>
+<aside class="notice">The base URL for Trades API call is https://public.coindcx.com </aside>
+<h3 id='http-request-4'>HTTP request</h3>
+<p><code>GET /market_data/trade_history</code></p>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/trades/SNTBTC"</span> <span class="c"># Replace 'SNTBTC' with your desired market pair.</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://public.coindcx.com/market_data/trade_history?pair=B-BTC_USDT&amp;limit=50"</span> <span class="c"># Replace 'B-BTC_USDT' with your desired market pair.</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
 
-<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://public.coindcx.com"</span>
 
-<span class="c1">// Replace the "SNTBTC" with the desired market pair.</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/trades/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// Replace the "B-BTC_USDT" with the desired market pair.</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/market_data/trade_history?pair=B-BTC_USDT&amp;limit=50"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre>
@@ -495,13 +540,14 @@
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"p"</span><span class="p">:</span><span class="w">  </span><span class="mf">0.00001693</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"q"</span><span class="p">:</span><span class="w">  </span><span class="mi">394</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"T"</span><span class="p">:</span><span class="w">  </span><span class="mf">1521476030955.09</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"m"</span><span class="p">:</span><span class="w">  </span><span class="kc">false</span><span class="w">
+    </span><span class="s2">"p"</span><span class="p">:</span><span class="w"> </span><span class="mf">11603.88</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.023519</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"s"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"T"</span><span class="p">:</span><span class="w"> </span><span class="mi">1565163305770</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"m"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='path-parameters'>Path parameters</h3>
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='query-parameters'>Query parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -510,47 +556,39 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>market</td>
+<td>pair</td>
 <td>Yes</td>
-<td>SNTBTC</td>
+<td>B-SNT_BTC  (<code>pair</code> from Market Details API)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>No</td>
+<td>Default: 30; Max: 500</td>
 </tr>
 </tbody></table>
 
-<p>This API provides with a sorted list of most recent 50 trades.</p>
+<p>This API provides with a sorted list of most recent 30 trades by default if limit parameter is not passed.</p>
 <h3 id='definitions-3'>Definitions</h3>
 <ul>
-  <li>m stands for whether the buyer is market maker or not.</li>
   <li>p is the trade price</li>
   <li>q is the quantity</li>
+  <li>s is the market name</li>
   <li>T is the timestamp of trade</li>
+  <li>m stands for whether the buyer is market maker or not.</li>
 </ul>
-<h2 id='order-book'>Order book</h2><h3 id='http-request-5'>HTTP request</h3>
-<p><code>GET /exchange/v1/books/:market</code></p>
-<h3 id='path-parameters-2'>Path parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Required</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>market</td>
-<td>Yes</td>
-<td>SNTBTC</td>
-</tr>
-</tbody></table>
+<h2 id='order-book'>Order book</h2>
+<aside class="notice">The base URL for Order book API call is https://public.coindcx.com </aside>
 <pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
 
-<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://api.coindcx.com"</span>
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://public.coindcx.com"</span>
 
-<span class="c1">// Replace the "SNTBTC" with the desired market pair.</span>
-<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/exchange/v1/books/SNTBTC"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// Replace the "B-BTC_USDT" with the desired market pair.</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/market_data/orderbook?pair=B-BTC_USDT"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">})</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.coindcx.com/exchange/v1/books/SNTBTC"</span> <span class="c"># Replace 'SNTBTC' with the desired market pair.</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://public.coindcx.com/market_data/orderbook?pair=B-BTC_USDT"</span> <span class="c"># Replace 'SNTBTC' with the desired market pair.</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -560,29 +598,142 @@
 <blockquote>
 <p>Response</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"asks"</span><span class="p">:{</span><span class="w">
-    </span><span class="s2">"0.00160900"</span><span class="p">:</span><span class="s2">"23.79000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"0.00161000"</span><span class="p">:</span><span class="s2">"300.85"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"0.00161400"</span><span class="p">:</span><span class="s2">"11.25"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"0.00161500"</span><span class="p">:</span><span class="s2">"101.82"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"0.00161700"</span><span class="p">:</span><span class="s2">"222.37000000"</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"bids"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"11570.67000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000871"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"11570.58000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001974"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"11570.02000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.280293"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"11570.00000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.929216"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"11569.91000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000871"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"11569.89000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0016"</span><span class="p">,</span><span class="w">
     </span><span class="p">,</span><span class="w">
     </span><span class="p">,</span><span class="w">
     </span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"bids"</span><span class="p">:{</span><span class="w">  
-    </span><span class="s2">"0.00160400"</span><span class="p">:</span><span class="s2">"24.24000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"0.00160300"</span><span class="p">:</span><span class="s2">"7.63"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"0.00160100"</span><span class="p">:</span><span class="s2">"917.51000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"0.00159900"</span><span class="p">:</span><span class="s2">"40.8"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"0.00159700"</span><span class="p">:</span><span class="s2">"6"</span><span class="w">
+  </span><span class="s2">"asks"</span><span class="p">:{</span><span class="w">
+   </span><span class="s2">"13900.00000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27.04094600"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"13100.00000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.48547100"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"12800.00000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36.93142200"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"12200.00000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92.04554800"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"12000.00000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"72.66595000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"11950.00000000"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17.16624600"</span><span class="p">,</span><span class="w">
     </span><span class="p">,</span><span class="w">
     </span><span class="p">,</span><span class="w">
     </span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+</span></code></pre><h3 id='http-request-5'>HTTP request</h3>
+<p><code>GET /market_data/orderbook</code></p>
+<h3 id='query-parameters-2'>Query parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pair</td>
+<td>Yes</td>
+<td>B-BTC_USDT (<code>pair</code> from Market Details API)</td>
+</tr>
+</tbody></table>
+
+<p>This API provides with a sorted list (in descending order) of bids and asks.</p>
+<h2 id='candles'>Candles</h2>
+<aside class="notice">The base URL for Candles API call is https://public.coindcx.com </aside>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">baseurl</span> <span class="o">=</span> <span class="s2">"https://public.coindcx.com"</span>
+
+<span class="c1">// Replace the "B-BTC_USDT" with the desired market pair.</span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">baseurl</span> <span class="o">+</span> <span class="s2">"/market_data/candles?pair=B-BTC_USDT&amp;interval=1m"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c"># Install requests module first.</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://public.coindcx.com/market_data/candles?pair=B-BTC_USDT&amp;interval=1m"</span> <span class="c"># Replace 'SNTBTC' with the desired market pair.</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.011803</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">open</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.011803</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">highest</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.011803</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">lowest</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.35</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">volume</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">terms</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">target</span><span class="w"> </span><span class="err">currency</span><span class="w"> </span><span class="err">(in</span><span class="w"> </span><span class="err">BTC</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">B-BTC_USDT)</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.011803</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">close</span><span class="w"> </span><span class="err">price</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1561463700000</span><span class="w"> </span><span class="err">//open</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">ms</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
+  </span><span class="err">.</span><span class="w">
+  </span><span class="err">.</span><span class="w">
+  </span><span class="err">.</span><span class="w">
+</span><span class="p">],</span><span class="w">
+
+</span></code></pre><h3 id='http-request-6'>HTTP request</h3>
+<p><code>GET /market_data/candles</code></p>
+<h3 id='query-parameters-3'>Query parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pair</td>
+<td>Yes</td>
+<td>B-BTC_USDT (<code>pair</code> from Market Details API)</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>Yes</td>
+<td>any of the valid intervals given below</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>No</td>
+<td>timestamp in ms, eg: <code>1562855417000</code></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>No</td>
+<td>timestamp in ms, eg: <code>1562855417000</code></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>No</td>
+<td>Default: 500; Max: 1000</td>
+</tr>
+</tbody></table>
+
+<p>This API provides with a sorted list (in descending order according to time key) of candlestick bars for given pair. Candles are uniquely identified by their time.</p>
+
+<p><strong>Valid intervals</strong></p>
+
+<p>m -&gt; minutes, h -&gt; hours, d -&gt; days, w -&gt; weeks, M -&gt; months</p>
+
+<ul>
+<li><code>1m</code></li>
+<li><code>5m</code></li>
+<li><code>15m</code></li>
+<li><code>30m</code></li>
+<li><code>1h</code></li>
+<li><code>2h</code></li>
+<li><code>4h</code></li>
+<li><code>6h</code></li>
+<li><code>8h</code></li>
+<li><code>1d</code></li>
+<li><code>3d</code></li>
+<li><code>1w</code></li>
+<li><code>1M</code></li>
+</ul>
 <h1 id='authentication'>Authentication</h1>
 <aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timstamp parameter of when the request was generated.</aside>
 
@@ -614,7 +765,7 @@
 
   <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'Content-Type'</span> <span class="o">=&gt;</span> <span class="s1">'application/json'</span><span class="p">,</span>
-    <span class="s1">'X-AUTH-APIKEY'</span> <span class="o">=&gt;</span> <span class="n">key</span><span class="p">,</span> 
+    <span class="s1">'X-AUTH-APIKEY'</span> <span class="o">=&gt;</span> <span class="n">key</span><span class="p">,</span>
     <span class="s1">'X-AUTH-SIGNATURE'</span> <span class="o">=&gt;</span> <span class="n">signature</span>
   <span class="p">}</span>
 
@@ -829,7 +980,7 @@ You must replace <code>your-api-key</code> and <code>signature</code> with your 
 </blockquote>
 
 <p>This endpoint retrieves account&#39;s balances.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /exchange/v1/users/balances</code></p>
 
 <!--######################## START user info ######################## -->
@@ -921,7 +1072,7 @@ You must replace <code>your-api-key</code> and <code>signature</code> with your 
 </blockquote>
 
 <p>This endpoint retrieves user info.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /exchange/v1/users/info</code></p>
 
 <!--######################## END user info ######################## -->
@@ -941,6 +1092,10 @@ You must replace <code>your-api-key</code> and <code>signature</code> with your 
 <tr>
 <td>order_type</td>
 <td>market_order, limit_order</td>
+</tr>
+<tr>
+<td>order_status</td>
+<td>open, partially_filled, filled, cancelled, rejected, partially_cancelled, init</td>
 </tr>
 <tr>
 <td>timestamp</td>
@@ -1033,9 +1188,9 @@ You must replace <code>your-api-key</code> and <code>signature</code> with your 
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">  
-     </span><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"market"</span><span class="p">:</span><span class="s2">"TRXETH"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"order_type"</span><span class="p">:</span><span class="s2">"limit_order"</span><span class="p">,</span><span class="w">
@@ -1054,7 +1209,7 @@ You must replace <code>your-api-key</code> and <code>signature</code> with your 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to place a new order on the exchange</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/create</code></p>
 <h3 id='parameters'>Parameters</h3>
 <table><thead>
@@ -1104,7 +1259,7 @@ You must replace <code>your-api-key</code> and <code>signature</code> with your 
 </tbody></table>
 <h2 id='create-multiple-orders'>Create multiple orders</h2>
 <aside class="notice">
-Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code> 
+Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code>
 </aside>
 <pre class="highlight ruby tab-ruby"><code>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
@@ -1210,9 +1365,9 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">  
-     </span><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"market"</span><span class="p">:</span><span class="s2">"TRXETH"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"order_type"</span><span class="p">:</span><span class="s2">"limit_order"</span><span class="p">,</span><span class="w">
@@ -1231,7 +1386,7 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to place a multiple orders on the exchange</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/create_multiple</code></p>
 <h3 id='parameters-in-an-array-of-objects'>Parameters in an array of objects</h3>
 <table><thead>
@@ -1360,7 +1515,7 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"market"</span><span class="p">:</span><span class="s2">"TRXETH"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_type"</span><span class="p">:</span><span class="s2">"limit_order"</span><span class="p">,</span><span class="w">
@@ -1377,7 +1532,7 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to fetch status of any order</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/status</code></p>
 <h3 id='parameters-2'>Parameters</h3>
 <table><thead>
@@ -1475,7 +1630,7 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">  
+  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"market"</span><span class="p">:</span><span class="s2">"TRXETH"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="s2">"limit_order"</span><span class="p">,</span><span class="w">
@@ -1493,7 +1648,7 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to fetch status of any order</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/status_multiple</code></p>
 <h3 id='parameters-3'>Parameters</h3>
 <table><thead>
@@ -1589,7 +1744,7 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">  
+  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"ead19992-43fd-11e8-b027-bb815bcb14ed"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"market"</span><span class="p">:</span><span class="s2">"TRXETH"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="s2">"limit_order"</span><span class="p">,</span><span class="w">
@@ -1607,7 +1762,7 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to fetch active orders</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/active_orders</code></p>
 <h3 id='parameters-4'>Parameters</h3>
 <table><thead>
@@ -1727,7 +1882,7 @@ Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter
 </code>
 Use this endpoint to fetch trades associated with your account</p>
 </blockquote>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/trade_history</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
@@ -1831,7 +1986,7 @@ Use this endpoint to fetch trades associated with your account</p>
 <pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">count</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="err">status</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Use this endpoint to fetch active orders count</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/active_orders_count</code></p>
 <h3 id='parameters-6'>Parameters</h3>
 <table><thead>
@@ -1941,7 +2096,7 @@ Use this endpoint to fetch trades associated with your account</p>
 <pre class="highlight json tab-json"><code><span class="w">
 </span></code></pre>
 <p>Use this endpoint to cancel multiple active orders in a single API call</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/cancel_all</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
@@ -2055,7 +2210,7 @@ Use this endpoint to fetch trades associated with your account</p>
 <pre class="highlight json tab-json"><code><span class="w">
 </span></code></pre>
 <p>Use this endpoint to cancel multiple active orders in a single API call</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/cancel_by_ids</code></p>
 <h3 id='parameters-8'>Parameters</h3>
 <table><thead>
@@ -2152,7 +2307,7 @@ Use this endpoint to fetch trades associated with your account</p>
 <pre class="highlight json tab-json"><code><span class="w">
 </span></code></pre>
 <p>Use this endpoint to cancel an active orders</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>POST /exchange/v1/orders/cancel</code></p>
 <h3 id='parameters-9'>Parameters</h3>
 <table><thead>
@@ -2425,7 +2580,7 @@ Use this endpoint to fetch trades associated with your account</p>
 </span></code></pre>
 <!-- ------------------- END Sockets ---------------------- -->
 
-<!-- 
+<!--
 
 # API call limits
 We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
