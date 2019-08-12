@@ -395,7 +395,7 @@ print(data)
 | endTime | No      | timestamp in ms, eg: `1562855417000`  |
 | limit | No      | Default: 500; Max: 1000  |
 
-This API provides with a sorted list(in ascending order according to time key) of candlestick bars for given pair. Candles are uniquely identified by their time.
+This API provides with a sorted list(in descending order according to time key) of candlestick bars for given pair. Candles are uniquely identified by their time.
 
 **Valid intervals**
 
