@@ -939,7 +939,7 @@ Use this endpoint to place a new order on the exchange
 ## Create multiple orders
 
 <aside class="notice">
-Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code>
+Multiple ordering API is only supported for CoinDCX INR markets. Set ecode parameter as <code>I</code>
 </aside>
 
 ```ruby
