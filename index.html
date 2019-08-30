@@ -1259,7 +1259,7 @@ You must replace <code>your-api-key</code> and <code>signature</code> with your 
 </tbody></table>
 <h2 id='create-multiple-orders'>Create multiple orders</h2>
 <aside class="notice">
-Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code>
+Multiple ordering API is only supported for CoinDCX INR markets. Set ecode parameter to <code>I</code>
 </aside>
 <pre class="highlight ruby tab-ruby"><code>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hmac</span>
@@ -1904,6 +1904,12 @@ Use this endpoint to fetch trades associated with your account</p>
 <td>No</td>
 <td>28473</td>
 <td>Trade ID after which you want the data. If not supplied, latest trades would be given</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Yes</td>
+<td>1524211224</td>
+<td>When was the request generated</td>
 </tr>
 </tbody></table>
 <h2 id='active-orders-count'>Active orders count</h2><pre class="highlight ruby tab-ruby"><code>
