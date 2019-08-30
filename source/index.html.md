@@ -1566,6 +1566,7 @@ Use this endpoint to fetch trades associated with your account
 |---------|----------|---------|---------------------------------------------------------------------------------------|
 | limit   | No       | 100     | Default 500                                                                           |
 | from_id | No       | 28473   | Trade ID after which you want the data. If not supplied, latest trades would be given |
+| timestamp| Yes | 1524211224 | When was the request generated |
 
 
 
