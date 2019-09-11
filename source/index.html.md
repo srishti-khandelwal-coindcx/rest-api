@@ -86,7 +86,7 @@ You can get your API key and Secret as follows
   - `partially_cancelled`: order is partially cancelled   
   - `untriggered`: stop varinat order was not triggered  
   
-  
+
 * `other terms`:  
   - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.  
   - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price.  
@@ -2239,7 +2239,6 @@ Use this endpoint to place a new order on the exchange.
 | stop_price     | number |  No       | 0.082        | Price to stop the order at(mandatory in case of stop_limit & take_profit)    |
 | order_type     | string |Yes      | market_order | Order Type                                     |
 | trailing_sl    | boolean | No       | true         | To place order with Trailing Stop Loss             |
-| sl_price       | number | No       | 0.082        | The price to Stop Loss at                |
 | target_price   | number |No       | 0.082        | The price to buy/sell or close the order position   |
 | ecode          | string |Yes      | B            | Exchange code in which the order will be placed|
 | timestamp      | number | Yes      | 1524211224   | When was the request generated                 |
