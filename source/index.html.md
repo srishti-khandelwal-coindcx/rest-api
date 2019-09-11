@@ -67,27 +67,29 @@ You can get your API key and Secret as follows
   - `rejected`: order is rejected (not placed on the exchange)
   - `close`: order is completely filled
   - `triggered`: stop varinat order triggered at specified stop price
+  
 
 * `order_type`: used to denote the type of order to be placed. Valid values for order_type includes:
   - `market_order`: such order takes the current market price of the token as price of order placed
   - `limit_order`: to specify price of order to be placed
   - `stop_limit`: whether stop price is required
   - `take_profit`: whether stop price is required
-
-
-* `status` for internal/individual orders: used to denote the type of internal/individual orders. Valid values for order_type includes:
-  -`initial`: order is just created
-  -`open`: order is successfully placed in the orderbook
-  -`partially_filled`: order is partially filled
-  -`filled`: order is completely filled
-  -`cancelled`: order is completely cancelled
-  -`rejected`: order is rejected (not placed on the exchange)
-  -`partially_cancelled`: order is partially cancelled
-  -`untriggered`: stop varinat order was not triggered
-
-* `other terms`:
-  - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.
-  - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price.
+  
+  
+* `status` for internal/individual orders: used to denote the type of internal/individual orders. Valid values for order_type includes:  
+  - `initial`: order is just created  
+  - `open`: order is successfully placed in the orderbook  
+  - `partially_filled`: order is partially filled   
+  - `filled`: order is completely filled 
+  - `cancelled`: order is completely cancelled  
+  - `rejected`: order is rejected (not placed on the exchange)  
+  - `partially_cancelled`: order is partially cancelled   
+  - `untriggered`: stop varinat order was not triggered  
+  
+  
+* `other terms`:  
+  - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.  
+  - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price.  
 
 
 # Public endpoints
