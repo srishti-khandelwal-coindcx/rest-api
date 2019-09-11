@@ -2322,7 +2322,7 @@ Use this endpoint to cancel any order.
 
 
 ## Exit
-<aside class="notice">.Any order with <b>order_status</b> among the following can only be exited: <br/>
+<aside class="notice">Any order with <b>order_status</b> among the following can only be exited: <br/>
 open or partial_close</aside>
 ```ruby
 
@@ -2420,7 +2420,7 @@ request.post(options, function(error, response, body) {
 ```
 
 
-Use this endpoint to exit any orders.
+Use this endpoint to exit any order.
 
 ### HTTP Request
 
@@ -2434,7 +2434,7 @@ Use this endpoint to exit any orders.
 | timestamp | number | Yes      | 1524211224                           | When was the request generated |
 
 ## Edit Target
-<aside class="notice">It can only edit target orders when there is 0 or 1 open target in an order. For multiple open targets in an order refer to <i>edit_price_of_target_order</i></aside>
+<aside class="notice">You can update target price only if order has 0 or 1 target order. For the multiple open targets refer- <strong><a href="#edit-price-of-target-order">Edit Price of Target Order</a></strong> section</aside>
 ```ruby
 
 ```
@@ -3087,7 +3087,7 @@ Use this endpoint to remove a particular amount from your Margin order, increasi
 
 
 ##  Fetch Orders
-<aside class="notice">This API supports <b>Pagination</b><br>Refer <i>Pagination section</i> for details</aside>
+<aside class="notice">This API supports <strong>Pagination</strong> Refer <strong><a href="#pagination">Pagination section</a></strong> for more details</aside>
 ```ruby
 
 ```
@@ -3277,7 +3277,7 @@ request.post(options, function(error, response, body) {
 
 ```
 
-Use this endpoint to fetch orders and its details which include all buy/sell related orders
+Use this endpoint to fetch orders and optionally its details which include all buy/sell related orders
 
 ### HTTP Request
 
@@ -3358,13 +3358,10 @@ size | Number of records per page; Default: 100, Max: 1000 |
   'x-xss-protection': '1; mode=block',
   'x-content-type-options': 'nosniff',
   'x-pagination': '{"total":29,"total_pages":6,"first_page":false,"last_page":false,"previous_page":1,"next_page":3,"out_of_bounds":false,"offset":5}',
-  etag: 'W/"835485b4eaaa16cd8a37d01cb58a2738"',
-  'cache-control': 'max-age=0, private, must-revalidate',
-  'x-request-id': '7c4ed420-ad10-42a8-9597-d891d9363084',
-  'x-runtime': '0.059680',
-  vary: 'Origin',
-  'x-powered-by': 'Phusion Passenger 4.0.60',
-  server: 'nginx/1.12.1 + Phusion Passenger 4.0.60'
+  .
+  .
+  .
+  .
 }
 ```
 
