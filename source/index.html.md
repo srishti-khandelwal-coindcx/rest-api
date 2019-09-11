@@ -2324,6 +2324,7 @@ Use this endpoint to cancel any order.
 ## Exit
 <aside class="notice">Any order with <b>order_status</b> among the following can only be exited: <br/>
 open or partial_close</aside>
+
 ```ruby
 
 ```
@@ -2435,6 +2436,7 @@ Use this endpoint to exit any order.
 
 ## Edit Target
 <aside class="notice">You can update target price only if order has 0 or 1 target order. For the multiple open targets refer- <strong><a href="#edit-price-of-target-order">Edit Price of Target Order</a></strong> section</aside>
+
 ```ruby
 
 ```
@@ -2663,6 +2665,7 @@ Use this endpoint to edit price of individual target order.
 
 ## Edit SL Price
 <aside class="notice">Only for orders where <b>trailing_sl is false</b></aside>
+
 ```ruby
 
 ```
@@ -2770,6 +2773,7 @@ Use this endpoint to edit stop loss price of a bracket order.
 
 ## Edit SL Price of Trailing Stop Loss
 <aside class="notice">Only for orders where <b>trailing_sl is true</b></aside>
+
 ```ruby
 
 ```
@@ -3088,6 +3092,7 @@ Use this endpoint to remove a particular amount from your Margin order, increasi
 
 ##  Fetch Orders
 <aside class="notice">This API supports <strong>Pagination</strong> Refer <strong><a href="#pagination">Pagination section</a></strong> for more details</aside>
+
 ```ruby
 
 ```
