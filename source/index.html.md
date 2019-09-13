@@ -58,7 +58,7 @@ You can get your API key and Secret as follows
 
 ### Margin Orders
 
-* `status`: used to denote the current status of the given order. Valid values for status include:
+* `status`: used to denote the current status of the given margin order. Valid values for status include:
   - `init`: order is just created, but not placed in the orderbook
   - `open`: order is successfully placed in the orderbook
   - `partial_entry`: internal entry order is partially filled
@@ -70,13 +70,19 @@ You can get your API key and Secret as follows
   
 
 * `order_type`: used to denote the type of order to be placed. Valid values for order_type includes:
-  - `market_order`: such order takes the current market price of the token as price of order placed
-  - `limit_order`: to specify price of order to be placed
-  - `stop_limit`: whether stop price is required
-  - `take_profit`: whether stop price is required
+  - `market_order`: in this order type we don't secify price; it is executed on the market price
+  - `limit_order`: in this order type we specify the price on which order is to be executed
+  - `stop_limit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
+  - `take_profit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
   
-  
-* `status` for internal/individual orders: used to denote the type of internal/individual orders. Valid values for order_type includes:  
+* `other terms`:  
+  - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.  
+  - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price. 
+  - `stop_price`: It is used in the Stop Variant order, to specify stop price
+
+### Margin Internal Orders  
+
+* `status` for internal orders: used to denote the type of internal orders. Valid values for order_type includes:  
   - `initial`: order is just created  
   - `open`: order is successfully placed in the orderbook  
   - `partially_filled`: order is partially filled   
@@ -86,10 +92,7 @@ You can get your API key and Secret as follows
   - `partially_cancelled`: order is partially cancelled   
   - `untriggered`: stop varinat order was not triggered  
   
-
-* `other terms`:  
-  - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.  
-  - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price.  
+ 
 
 
 # Public endpoints
