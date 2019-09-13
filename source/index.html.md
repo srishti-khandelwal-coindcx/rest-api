@@ -56,6 +56,46 @@ You can get your API key and Secret as follows
   - `cancelled`: order is completely or partially cancelled
   - `rejected`: order is rejected (not placed on the exchange
 
+### Margin Orders
+
+* `status`: used to denote the current status of the given margin order. Valid values for status include:
+  - `init`: order is just created, but not placed in the orderbook
+  - `open`: order is successfully placed in the orderbook
+  - `partial_entry`: internal entry order is partially filled
+  - `partial_close`: internal target order is partially closed
+  - `cancelled`: order is completely cancelled
+  - `rejected`: order is rejected (not placed on the exchange)
+  - `close`: order is completely filled
+  - `triggered`: stop varinat order triggered at specified stop price
+  
+
+* `order_type`: used to denote the type of order to be placed. Valid values for order_type includes:
+  - `market_order`: in this order type we don't secify price; it is executed on the market price
+  - `limit_order`: in this order type we specify the price on which order is to be executed
+  - `stop_limit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
+  - `take_profit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
+  
+* 
+Other Terms:  
+  - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.  
+  - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price. 
+  - `stop_price`: It is used in the Stop Variant order, to specify stop price
+
+### Margin Internal Orders  
+
+* `status` for internal orders: used to denote the type of internal orders. Valid values for order_type includes:  
+  - `initial`: order is just created  
+  - `open`: order is successfully placed in the orderbook  
+  - `partially_filled`: order is partially filled   
+  - `filled`: order is completely filled 
+  - `cancelled`: order is completely cancelled  
+  - `rejected`: order is rejected (not placed on the exchange)  
+  - `partially_cancelled`: order is partially cancelled   
+  - `untriggered`: stop varinat order was not triggered  
+  
+ 
+
+
 # Public endpoints
 
 ## Ticker
@@ -2203,7 +2243,6 @@ Use this endpoint to place a new order on the exchange.
 | stop_price     | number |  No       | 0.082        | Price to stop the order at(mandatory in case of stop_limit & take_profit)    |
 | order_type     | string |Yes      | market_order | Order Type                                     |
 | trailing_sl    | boolean | No       | true         | To place order with Trailing Stop Loss             |
-| sl_price       | number | No       | 0.082        | The price to Stop Loss at                |
 | target_price   | number |No       | 0.082        | The price to buy/sell or close the order position   |
 | ecode          | string |Yes      | B            | Exchange code in which the order will be placed|
 | timestamp      | number | Yes      | 1524211224   | When was the request generated                 |
@@ -2648,7 +2687,7 @@ request.post(options, function(error, response, body) {
 ```
 
 
-Use this endpoint to edit price of individual target order.
+Use this endpoint to edit price of internal target order.
 
 ### HTTP Request
 
