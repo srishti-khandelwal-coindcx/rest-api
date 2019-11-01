@@ -3739,26 +3739,26 @@ In aggregate, you may call `https//api.coindcx.com` not more than 10 times per s
 
 ### Response
 <ul>
-  <li>id is client order id / system generated order id</li>
-  <li>side is whether order is placed to buy or sell</li>
-  <li>status is current status of the order</li>
-  <li>market is the trading pair</li>
-  <li>order_type is the type of order placed</li>
-  <li>trailing_sl indicates whether order placed is with Trailing Stop Loss</li>
-  <li>avg_entry is the entry price in base currency</li>
-  <li>avg_exit is the exit price</li>
-  <li>fee is the fee charged</li>
-  <li>entry_fee is the entry fee</li>
-  <li>exit_fee is the exit fee</li>
-  <li>active_pos is the quantity filled</li>
-  <li>total_pos is the total quantity filled</li>
-  <li>price is the price at which order was placed</li>
-  <li>sl_price is the price at which the trader wishes to Stop Loss</li>
-  <li>target_price is the price at which order position is to be closed</li>
-  <li>stop_price is used in the Stop Variant order</li>
-  <li>pnl is the net profit and loss</li>
-  <li>interest is the interest charged</li>
-  <li>orders contains the details abput target order</li>
+  <li>id - is client order id / system generated order id</li>
+  <li>side - is whether order is placed to buy or sell</li>
+  <li>status - is current status of the order</li>
+  <li>market - is the trading pair</li>
+  <li>order_type - is the type of order placed</li>
+  <li>trailing_sl - indicates whether order placed is with Trailing Stop Loss</li>
+  <li>avg_entry - is the entry price in base currency</li>
+  <li>avg_exit - is the exit price</li>
+  <li>fee - is the fee charged in percentage</li>
+  <li>entry_fee - is the entry fee</li>
+  <li>exit_fee - is the exit fee</li>
+  <li>active_pos - is the quantity filled</li>
+  <li>total_pos - is the total quantity filled</li>
+  <li>price - is the price at which order was placed</li>
+  <li>sl_price - is the price at which the trader wishes to Stop Loss</li>
+  <li>target_price - is the price at which order position is to be closed</li>
+  <li>stop_price - is used in the Stop Variant order</li>
+  <li>pnl - is the net profit and loss</li>
+  <li>interest - is the interest charged</li>
+  <li>orders - contains the details abput target order</li>
 </ul>
 
 ```python
