@@ -2151,28 +2151,28 @@ request.post(options, function(error, response, body) {
 
 ```json
 
-[ { id: 'caa1e032-5763-42a5-9684-587bc1a846d8',
-    currency_short_name: 'BTC',
-    amount: 0.01,
-    interest: 0.1,
-    interest_type: 'simple',
-    duration: 8,
-    side: 'lend',
-    expiry: 1564666811940,
-    status: 'close',
-    created_at: 1563975611942,
-    settled_at: 1565615166177 },
-  { id: '1212ad3d-8a5b-4965-9d21-151efc0c84d7',
-    currency_short_name: 'BTC',
-    amount: 0.01,
-    interest: 0.1,
-    interest_type: 'simple',
-    duration: 8,
-    side: 'lend',
-    expiry: 1564666764834,
-    status: 'close',
-    created_at: 1563975564836,
-    settled_at: 1563975597184 } ]
+[ { "id": "caa1e032-5763-42a5-9684-587bc1a846d8",
+    "currency_short_name": "BTC",
+    "amount": 0.01,
+    "interest": 0.1,
+    "interest_type": "simple",
+    "duration": 8,
+    "side": "lend",
+    "expiry": 1564666811940,
+    "status": "close",
+    "created_at": 1563975611942,
+    "settled_at": 1565615166177 },
+  { "id": "1212ad3d-8a5b-4965-9d21-151efc0c84d7",
+    "currency_short_name": "BTC",
+    "amount": 0.01,
+    "interest": 0.1,
+    "interest_type": "simple",
+    "duration": 8,
+    "side": "lend",
+    "expiry": 1564666764834,
+    "status": "close",
+    "created_at": 1563975564836,
+    "settled_at": 1563975597184 } ]
 ```
 
 Use this endpoint to fetch orders and its details
@@ -2283,17 +2283,17 @@ request.post(options, function(error, response, body) {
 
 ```json
 
-[ { id: 'df7d9640-29e8-4731-9fc6-ec2f738507e2',
-    currency_short_name: 'XRP',
-    amount: 11,
-    interest: 0.05,
-    interest_type: 'simple',
-    duration: 20,
-    side: 'lend',
-    expiry: 1576069883995,
-    status: 'open',
-    created_at: 1574341883998,
-    settled_at: null } ]
+[ { "id": "df7d9640-29e8-4731-9fc6-ec2f738507e2",
+    "currency_short_name": "XRP",
+    "amount": 11,
+    "interest": 0.05,
+    "interest_type": "simple",
+    "duration": 20,
+    "side": "lend",
+    "expiry": 1576069883995,
+    "status": "open",
+    "created_at": 1574341883998,
+    "settled_at": null } ]
 
 ```
 
@@ -2404,17 +2404,17 @@ request.post(options, function(error, response, body) {
 
 ```json
 
-[ { id: "df7d9640-29e8-4731-9fc6-ec2f738507e2",
-    currency_short_name: "XRP",
-    amount: 11,
-    interest: 0.05,
-    interest_type: "simple",
-    duration: 20,
-    side: "lend",
-    expiry: 1576069883995,
-    status: "exit",
-    created_at: 1574341883998,
-    settled_at: 1574342058493 } ]
+[ { "id": "df7d9640-29e8-4731-9fc6-ec2f738507e2",
+    "currency_short_name": "XRP",
+    "amount": 11,
+    "interest": 0.05,
+    "interest_type": "simple",
+    "duration": 20,
+    "side": "lend",
+    "expiry": 1576069883995,
+    "status": "exit",
+    "created_at": 1574341883998,
+    "settled_at": 1574342058493 } ]
 
 
 ```
